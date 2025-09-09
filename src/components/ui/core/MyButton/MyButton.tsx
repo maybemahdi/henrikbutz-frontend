@@ -39,11 +39,11 @@ const MyButton: React.FC<ButtonProps> = ({
 
   const variantClasses = {
     outline: cn(
-      "border-2 border-secondary text-white",
-      "hover:bg-secondary/10 active:bg-secondary/20",
+      "border border-blue-300 text-white",
+      "hover:bg-core-gradient active:bg-core-gradient/90",
       "px-[calc(24px-2px)]"
     ),
-    filled: cn("bg-secondary !text-white hover:bg-secondary"),
+    filled: cn("bg-core-gradient !text-white hover:bg-bg-core-gradient"),
   };
 
   return (
@@ -53,58 +53,66 @@ const MyButton: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={cn(baseClasses, variantClasses[variant])}
     >
-      {(isArrow || customIcon) && iconPosition === "left" && (
-        <span className="flex items-center">
-          {isArrow && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              className={cn({
-                "text-white": variant === "filled",
-                "text-primary": variant === "outline",
-              })}
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M19.4489 11.1013C17.1085 11.1013 14.9753 8.96916 14.9753 6.62772V5.66772H13.0553V6.62772C13.0553 8.33076 13.8022 9.92819 14.9744 11.1013H3.12891V13.0213H14.9744C13.8022 14.1944 13.0553 15.7919 13.0553 17.4949V18.4549H14.9753V17.4949C14.9753 15.1535 17.1085 13.0213 19.4489 13.0213H20.4089V11.1013H19.4489Z"
-                fill="currentColor"
-              />
-            </svg>
-          )}
-          {customIcon}
-        </span>
-      )}
+      <span
+        className={cn(
+          "flex items-center justify-center gap-2 rounded-[8px]",
+          variant === "outline" && "bg-transparent", // background inside outline
+          variant === "filled" && "bg-transparent"
+        )}
+      >
+        {(isArrow || customIcon) && iconPosition === "left" && (
+          <span className="flex items-center">
+            {isArrow && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                className={cn({
+                  "text-white": variant === "filled",
+                  "text-primary": variant === "outline",
+                })}
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M19.4489 11.1013C17.1085 11.1013 14.9753 8.96916 14.9753 6.62772V5.66772H13.0553V6.62772C13.0553 8.33076 13.8022 9.92819 14.9744 11.1013H3.12891V13.0213H14.9744C13.8022 14.1944 13.0553 15.7919 13.0553 17.4949V18.4549H14.9753V17.4949C14.9753 15.1535 17.1085 13.0213 19.4489 13.0213H20.4089V11.1013H19.4489Z"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
+            {customIcon}
+          </span>
+        )}
 
-      {label}
-      {(isArrow || customIcon) && iconPosition === "right" && (
-        <span className="flex items-center">
-          {isArrow && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              className={cn({
-                "text-white": variant === "filled",
-                "text-primary": variant === "outline",
-              })}
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M19.4489 11.1013C17.1085 11.1013 14.9753 8.96916 14.9753 6.62772V5.66772H13.0553V6.62772C13.0553 8.33076 13.8022 9.92819 14.9744 11.1013H3.12891V13.0213H14.9744C13.8022 14.1944 13.0553 15.7919 13.0553 17.4949V18.4549H14.9753V17.4949C14.9753 15.1535 17.1085 13.0213 19.4489 13.0213H20.4089V11.1013H19.4489Z"
-                fill="currentColor"
-              />
-            </svg>
-          )}
-          {customIcon}
-        </span>
-      )}
+        {label}
+        {(isArrow || customIcon) && iconPosition === "right" && (
+          <span className="flex items-center">
+            {isArrow && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                className={cn({
+                  "text-white": variant === "filled",
+                  "text-primary": variant === "outline",
+                })}
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M19.4489 11.1013C17.1085 11.1013 14.9753 8.96916 14.9753 6.62772V5.66772H13.0553V6.62772C13.0553 8.33076 13.8022 9.92819 14.9744 11.1013H3.12891V13.0213H14.9744C13.8022 14.1944 13.0553 15.7919 13.0553 17.4949V18.4549H14.9753V17.4949C14.9753 15.1535 17.1085 13.0213 19.4489 13.0213H20.4089V11.1013H19.4489Z"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
+            {customIcon}
+          </span>
+        )}
+      </span>
     </button>
   );
 };

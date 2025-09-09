@@ -8,6 +8,28 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "core-gradient":
+          "linear-gradient(90deg, #032159 0%, #1EA4EA 50%, #66EFFF 100%)",
+      },
+      keyframes: {
+        fireFlow: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+      },
+      animation: {
+        fire: "fireFlow 8s ease-in-out infinite",
+        float: "float 4s ease-in-out infinite",
+      },
+      backgroundSize: {
+        "300%": "300% 300%",
+      },
       colors: {
         "blue-primary": "#102C54",
         "green-primary": "#1BB68A",

@@ -1,14 +1,12 @@
-
-import Footer from "@/components/shared/Footer/Footer";
-import NavBar from "@/components/shared/NavBar/NavBar";
-import React, { ReactNode } from "react";
+import Navbar from "@/components/shared/Navbar/Navbar";
+import { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="">
-      <NavBar />
-      <div className="h-full min-h-[calc(100vh-0px)]">{children}</div>
-      <Footer />
+      <Navbar />
+      <div>{children}</div>
+      {/* <Footer /> */}
     </div>
   );
 };
