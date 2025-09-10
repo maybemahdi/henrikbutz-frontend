@@ -1,18 +1,27 @@
 "use client";
 
-import companies from "@/assets/images/companies.png";
-import heroBg from "@/assets/images/heroBg.png";
-import MyButton from "@/components/ui/core/MyButton/MyButton";
 import bannerMobile from "@/assets/images/bannerMobile.png";
+import companies from "@/assets/images/companies.png";
+import MyButton from "@/components/ui/core/MyButton/MyButton";
 
 const Banner = () => {
   return (
     <section
-      style={{ backgroundImage: `url(${heroBg.src})` }}
+      // style={{ backgroundImage: `url(${heroBg.src})` }}
       className="relative bg-cover bg-no-repeat min-h-[calc(100vh-0px)] overflow-hidden flex flex-col justify-center items-center"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-orange-900/20"></div>
+
+      {/* bg video */}
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={"/heroVideoUpscaled.mp4"} type="video/mp4" />
+      </video>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[50vh]">

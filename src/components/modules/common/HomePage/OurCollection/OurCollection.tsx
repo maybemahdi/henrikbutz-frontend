@@ -90,7 +90,7 @@ export default function OurCollection() {
               onClick={prevSlide}
               className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow mr-4"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-600" />
+              <ChevronLeft className="w-5 h-5 text-white" />
             </button>
 
             <div className="flex-1 overflow-hidden">
@@ -141,7 +141,7 @@ export default function OurCollection() {
               onClick={nextSlide}
               className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow ml-4"
             >
-              <ChevronRight className="w-5 h-5 text-gray-600" />
+              <ChevronRight className="w-5 h-5 text-white" />
             </button>
           </div>
         </div>
