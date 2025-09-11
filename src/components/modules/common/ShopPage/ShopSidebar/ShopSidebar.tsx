@@ -74,8 +74,8 @@ export function ShopSidebar() {
   return (
     <div className="space-y-6">
       {/* Category Section */}
-      <div className="bg-gray-900 rounded-lg p-4">
-        <h3 className="text-white font-semibold mb-4 bg-gray-800 px-3 py-2 rounded">
+      <div className="rounded-lg p-4">
+        <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Category
         </h3>
         <div className="space-y-2">
@@ -85,8 +85,8 @@ export function ShopSidebar() {
               onClick={() => setActiveCategory(category.name)}
               className={`block w-full text-left px-3 py-2 rounded text-sm transition-colors ${
                 activeCategory === category.name
-                  ? "bg-blue-600 text-white"
-                  : "text-gray-300 hover:text-white hover:bg-gray-800"
+                  ? "text-blue-500"
+                  : "text-gray-300 hover:text-white"
               }`}
             >
               {category.name}
@@ -96,8 +96,8 @@ export function ShopSidebar() {
       </div>
 
       {/* Price Filter Section */}
-      <div className="bg-gray-900 rounded-lg p-4">
-        <h3 className="text-white font-semibold mb-4 bg-gray-800 px-3 py-2 rounded">
+      <div className="rounded-lg p-4">
+        <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Filter by price
         </h3>
         <div className="space-y-4">
@@ -121,8 +121,8 @@ export function ShopSidebar() {
       </div>
 
       {/* Best Seller Section */}
-      <div className="bg-gray-900 rounded-lg p-4">
-        <h3 className="text-white font-semibold mb-4 bg-gray-800 px-3 py-2 rounded">
+      <div className="rounded-lg p-4">
+        <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Best Seller
         </h3>
         <div className="space-y-3">
@@ -156,8 +156,8 @@ export function ShopSidebar() {
       </div>
 
       {/* Product Tags Section */}
-      <div className="bg-gray-900 rounded-lg p-4">
-        <h3 className="text-white font-semibold mb-4 bg-gray-800 px-3 py-2 rounded">
+      <div className="rounded-lg p-4">
+        <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Product tags
         </h3>
         <div className="flex flex-wrap gap-2">

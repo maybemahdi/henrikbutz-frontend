@@ -2,6 +2,7 @@
 
 import MyButton from "@/components/ui/core/MyButton/MyButton";
 import { Heart, ShoppingCart, Eye } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 interface Product {
@@ -65,9 +66,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          {product.name}
-        </h3>
+        <Link href={`/shop/${product.id}`}>
+          <h3 className="text-lg font-semibold underline text-gray-900 mb-2">
+            {product.name}
+          </h3>
+        </Link>
         <p className="text-2xl font-bold text-gray-900 mb-4">
           ${product.price}
         </p>

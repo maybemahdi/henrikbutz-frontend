@@ -11,6 +11,8 @@ export default {
       backgroundImage: {
         "core-gradient":
           "linear-gradient(90deg, #032159 0%, #1EA4EA 50%, #66EFFF 100%)",
+        "sec-gradient":
+          "linear-gradient(90deg, #FF6903 0%, #FFB305 50%, #FFDFA3 100%)",
       },
       keyframes: {
         fireFlow: {

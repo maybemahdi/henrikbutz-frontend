@@ -5,9 +5,8 @@ import { ShopSidebar } from "./ShopSidebar/ShopSidebar";
 export default function ShopPage() {
   return (
     <div className="min-h-screen bg-black">
-
       {/* Breadcrumb and Results Header */}
-      <div className="bg-black text-white py-4 px-4 md:px-8">
+      <div className="bg-black max-w-7xl mx-auto px-4 md:px-8 py-8 text-white">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm">
@@ -50,7 +49,6 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

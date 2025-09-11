@@ -15,7 +15,7 @@ const categories = [
   "Bass & Beats Lab",
 ];
 
-const products = [
+export const products = [
   {
     id: 1,
     name: "New Release iPhone",
