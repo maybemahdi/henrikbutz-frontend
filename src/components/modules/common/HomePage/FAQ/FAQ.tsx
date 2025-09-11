@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { ChevronDownIcon } from "lucide-react"
-import { useState } from "react"
+import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
 
 interface FAQItem {
-  id: number
-  question: string
-  answer: string
+  id: number;
+  question: string;
+  answer: string;
 }
 
 const faqData: FAQItem[] = [
@@ -42,13 +42,12 @@ const faqData: FAQItem[] = [
   },
 ];
 
-
 export default function FAQ() {
-  const [openItem, setOpenItem] = useState<number | null>(1) // First item open by default
+  const [openItem, setOpenItem] = useState<number | null>(1); // First item open by default
 
   const toggleItem = (id: number) => {
-    setOpenItem(openItem === id ? null : id)
-  }
+    setOpenItem(openItem === id ? null : id);
+  };
 
   return (
     <section className="py-16 px-4 bg-gray-50">

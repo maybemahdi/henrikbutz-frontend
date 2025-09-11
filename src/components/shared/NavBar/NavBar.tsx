@@ -10,9 +10,12 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import logo from "@/assets/images/logo.png";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const pathname = usePathname();
 
   const menuItems = [
     { label: "Home", href: "/", active: true },
@@ -31,29 +34,31 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-sm border-b border-slate-700/50">
+    <nav className="fixed w-full top-0 z-50 bg-[#0f0f0f] backdrop-blur-sm border-b border-slate-700/50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={logo.src} alt="Logo" className="h-[180px] w-auto" />
+            <Link href={"/"}>
+              <img src={logo.src} alt="Logo" className="h-[180px] w-auto" />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    item.active
+                   pathname === item.href
                       ? "text-white border border-blue-400 bg-blue-400/10"
                       : "text-gray-300 hover:text-white hover:bg-slate-700/50"
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

@@ -1,10 +1,19 @@
 "use client";
 
-import bannerMobile from "@/assets/images/bannerMobile.png";
+// import bannerMobile from "@/assets/images/bannerMobile.png";
 import companies from "@/assets/images/companies.png";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
+import { useEffect, useRef } from "react";
+import "@google/model-viewer";
 
 const Banner = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.7; // 0.7 = half speed, 1 = normal, 2 = double speed
+    }
+  }, []);
   return (
     <section
       // style={{ backgroundImage: `url(${heroBg.src})` }}
@@ -15,9 +24,12 @@ const Banner = () => {
 
       {/* bg video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
+        playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src={"/heroVideoUpscaled.mp4"} type="video/mp4" />
@@ -48,16 +60,15 @@ const Banner = () => {
 
           {/* Right Content - Product Images */}
           <div className="relative flex justify-center items-center">
-            <div className="relative w-full max-w-lg">
-              <img
-                src={bannerMobile.src}
-                alt="mobile phones"
-                className="w-full"
-              />
-
-              {/* Glowing Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-orange-500/20 blur-3xl -z-10 scale-150"></div>
-            </div>
+            {/* @ts-expect-error model-viewer is a custom element */}
+            <model-viewer
+              src="/Phone.glb"
+              alt="iPhone 17 Pro Max"
+              auto-rotate
+              camera-controls
+              rotation-per-second="30deg"
+              style={{ width: "500px", height: "600px" }}
+            />
           </div>
         </div>
 
