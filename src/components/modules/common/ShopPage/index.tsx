@@ -1,16 +1,19 @@
+import Link from "next/link";
 import { ProductsGrid } from "./ProductsGrid/ProductsGrid";
 import { ShopSidebar } from "./ShopSidebar/ShopSidebar";
-
+import FooterDark from "@/components/shared/Footer/FooterDark";
 
 export default function ShopPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Breadcrumb and Results Header */}
-      <div className="bg-black max-w-7xl mx-auto px-4 md:px-8 py-8 text-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="bg-black container mx-auto px-4 md:px-8 py-8 text-white">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-400">Home</span>
+          <div className="flex items-center gap-2 text-sm container mx-auto py-8">
+            <Link href={"/"} className="text-gray-400">
+              Home
+            </Link>
             <span className="text-gray-400">{">"}</span>
             <span className="text-white">Shop</span>
           </div>
@@ -36,7 +39,7 @@ export default function ShopPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+      <div className="container mx-auto px-4 md:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="lg:w-1/4">
@@ -49,6 +52,7 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
+      <FooterDark />
     </div>
   );
 }

@@ -35,7 +35,7 @@ const Banner = () => {
         <source src={"/heroVideoUpscaled.mp4"} type="video/mp4" />
       </video>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
           {/* Left Content */}
           <div className="space-y-8">

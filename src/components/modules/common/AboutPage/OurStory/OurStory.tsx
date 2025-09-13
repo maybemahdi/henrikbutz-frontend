@@ -47,7 +47,7 @@ const OurStory = () => {
 
   return (
     <section className="bg-black text-white py-16 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left Side - Video/Image */}

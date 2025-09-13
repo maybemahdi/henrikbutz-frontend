@@ -42,7 +42,7 @@ const faqData: FAQItem[] = [
   },
 ];
 
-export default function FAQ() {
+export default function FAQDark() {
   const [openItem, setOpenItem] = useState<number | null>(1); // First item open by default
 
   const toggleItem = (id: number) => {
@@ -50,34 +50,34 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="container py-12 mx-auto border-2 border-blue-300 rounded-lg">
+    <section className="py-16 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-950">
+      <div className="container py-12 mx-auto border border-[#bd5a1971] rounded-2xl shadow-2xl bg-gradient-to-br from-gray-900 via-gray-950 to-black backdrop-blur">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <span className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
             Quick Help Before You Design
           </h2>
         </div>
 
         {/* FAQ Container */}
-        <div className="max-w-[80%] mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+        <div className="max-w-[80%] mx-auto rounded-2xl overflow-hidden shadow-inner">
           {faqData.map((item, index) => (
             <div
               key={item.id}
-              className={`${index !== 0 ? "border-t border-gray-200" : ""}`}
+              className={`${index !== 0 ? "border-t border-gray-700" : ""}`}
             >
               <button
                 onClick={() => toggleItem(item.id)}
-                className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-800 transition-colors duration-200"
               >
-                <span className="text-lg font-medium text-gray-900 pr-4">
+                <span className="text-lg font-medium text-gray-200 pr-4">
                   {item.question}
                 </span>
                 <ChevronDownIcon
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0 ${
+                  className={`w-5 h-5 text-cyan-400 transition-transform duration-200 flex-shrink-0 ${
                     openItem === item.id ? "rotate-180" : ""
                   }`}
                 />
@@ -85,7 +85,7 @@ export default function FAQ() {
 
               {openItem === item.id && (
                 <div className="px-6 pb-6">
-                  <div className="text-gray-600 leading-relaxed">
+                  <div className="text-gray-400 leading-relaxed">
                     {item.answer}
                   </div>
                 </div>

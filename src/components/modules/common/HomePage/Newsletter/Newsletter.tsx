@@ -16,7 +16,7 @@ export default function Newsletter() {
 
   return (
     <section className="pb-16 px-4 bg-gray-50">
-      <div className="max-w-7xl bg-gray-100 rounded-lg py-12 mx-auto border-2 border-blue-300">
+      <div className="container bg-gray-100 rounded-lg py-12 mx-auto border-2 border-blue-300">
         <div className="max-w-[80%] mx-auto p-8 md:p-12 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
             Stay Inspired! Get Exclusive Designs & Deals

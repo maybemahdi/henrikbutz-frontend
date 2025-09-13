@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
 import logo from "@/assets/images/logo.png";
+import Link from "next/link";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -26,13 +27,17 @@ export default function Footer() {
 
   return (
     <footer className="bg-white py-16 px-4 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <img src={logo.src} alt="Logo" className="h-[180px] w-auto" />
+              <img
+                src={logo.src}
+                alt="Logo"
+                className="h-auto md:h-[100px] w-auto"
+              />
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
               At TeeCraft Dev we believe every tee tells a story. Whether you're
@@ -46,44 +51,44 @@ export default function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">Information</h3>
             <ul className="space-y-3">
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   About us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Our Blogs
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -93,44 +98,44 @@ export default function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">Useful Links</h3>
             <ul className="space-y-3">
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   My Account
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Browse Shop
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Your Cart
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Support
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/testimonials"
                   className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
                 >
                   Testimonials
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -186,60 +191,60 @@ export default function Footer() {
 
           {/* Social Media Icons */}
           <div className="flex space-x-4">
-            <a
+            <Link
               href="#"
               className="text-gray-400 hover:text-blue-600 transition-colors"
             >
               <FaFacebookF size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-pink-600 transition-colors"
             >
               <FaInstagram size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-blue-700 transition-colors"
             >
               <FaLinkedinIn size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-red-600 transition-colors"
             >
               <FaYoutube size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-yellow-400 transition-colors"
             >
               <FaSnapchatGhost size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-black transition-colors"
             >
               <FaTiktok size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-gray-800 transition-colors"
             >
               <FaThreads size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-red-600 transition-colors"
             >
               <FaPinterestP size={18} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="text-gray-400 hover:text-black transition-colors"
             >
               <FaXTwitter size={18} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

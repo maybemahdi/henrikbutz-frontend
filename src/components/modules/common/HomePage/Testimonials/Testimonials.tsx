@@ -102,22 +102,30 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
   );
 };
 
-export default function Testimonials() {
+export default function Testimonials({ isPage = false }: { isPage?: boolean }) {
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background with curved design */}
       <div className="absolute inset-0 bg-black/90"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            Testimonials
+        {!isPage ? (
+          <div className="text-center mb-12">
+            <div className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Testimonials
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              What Our Customers Says
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            What Our Customers Says
-          </h2>
-        </div>
+        ) : (
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Testimonials
+            </h2>
+          </div>
+        )}
 
         {/* Testimonials Slider */}
         <div className="relative">

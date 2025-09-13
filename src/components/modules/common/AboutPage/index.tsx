@@ -1,16 +1,17 @@
-import React from "react";
+import FooterDark from "@/components/shared/Footer/FooterDark";
+import FAQDark from "../HomePage/FAQ/FAQDark";
+import NewsletterDark from "../HomePage/Newsletter/NewsLetterDark";
 import AboutBanner from "./AboutBanner/AboutBanner";
 import OurStory from "./OurStory/OurStory";
-import FAQ from "../HomePage/FAQ/FAQ";
-import Newsletter from "../HomePage/Newsletter/Newsletter";
 
 const AboutPage = () => {
   return (
     <div>
       <AboutBanner />
       <OurStory />
-      <FAQ />
-      <Newsletter />
+      <FAQDark />
+      <NewsletterDark />
+      <FooterDark />
     </div>
   );
 };

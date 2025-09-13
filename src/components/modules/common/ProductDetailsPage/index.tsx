@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ProductDetailsSection } from "./ProductDetailsSection/ProductDetailsSection";
 import { ProductTabs } from "./ProductTabs/ProductTabs";
 import { RelatedProducts } from "./RelatedProducts/RelatedProducts";
+import Footer from "@/components/shared/Footer/Footer";
 
 const ProductDetailsPage = () => {
   return (
@@ -35,6 +36,7 @@ const ProductDetailsPage = () => {
         {/* Related Products Section */}
         <RelatedProducts />
       </div>
+      <Footer />
     </div>
   );
 };

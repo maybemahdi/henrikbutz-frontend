@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import bannerMobile from "@/assets/images/bannerMobile.png";
 
-const categories = [
+export const categories = [
   "SmartMobiles",
   "iPad & TabZone",
   "Laptop & MacBook Hub",
@@ -72,7 +72,7 @@ export default function OurCollection() {
 
   return (
     <section className="py-16 px-4 bg-black/90">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
