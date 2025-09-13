@@ -5,6 +5,7 @@ import { Carousel } from "antd";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import bannerMobile from "@/assets/images/bannerMobile.png";
+import { Product } from "@/types/product";
 
 export const categories = [
   "SmartMobiles",
@@ -15,47 +16,94 @@ export const categories = [
   "Bass & Beats Lab",
 ];
 
-export const products = [
+export const products: Product[] = [
   {
-    id: 1,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
-    isNewArrival: false,
-  },
-  {
-    id: 2,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
-  },
-  {
-    id: 3,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
-    isNewArrival: false,
-  },
-  {
-    id: 4,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
-    isNewArrival: false,
-  },
-  {
-    id: 5,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
+    id: "hp-15-fc0239au",
+    name: 'HP 15-fc0239AU AMD Athlon Silver 7120U 15.6" FHD Laptop',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    price: 600.0,
+    images: [
+      bannerMobile.src,
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+    ],
+    colors: [
+      { name: "Silver", value: "silver", color: "bg-gray-300" },
+      { name: "Black", value: "black", color: "bg-black" },
+      { name: "Gold", value: "gold", color: "bg-yellow-600" },
+    ],
+    sku: "N/A",
+    category: "SmartMobiles",
+    tags: ["mobile", "smartmobile"],
     isNewArrival: true,
   },
   {
-    id: 6,
-    name: "New Release iPhone",
-    price: 600,
-    image: bannerMobile.src,
-    isNewArrival: false,
+    id: "hp-15-fc0239aw",
+    name: 'HP 15-fc0239AU AMD Athlon Silver 7120U 15.6" FHD Laptop',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    price: 600.0,
+    images: [
+      bannerMobile.src,
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+    ],
+    colors: [
+      { name: "Silver", value: "silver", color: "bg-gray-300" },
+      { name: "Black", value: "black", color: "bg-black" },
+      { name: "Gold", value: "gold", color: "bg-yellow-600" },
+    ],
+    sku: "N/A",
+    category: "SmartMobiles",
+    tags: ["mobile", "smartmobile"],
+    isNewArrival: true,
+  },
+  {
+    id: "hp-15-fc0239af",
+    name: 'HP 15-fc0239AU AMD Athlon Silver 7120U 15.6" FHD Laptop',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    price: 600.0,
+    images: [
+      bannerMobile.src,
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+    ],
+    colors: [
+      { name: "Silver", value: "silver", color: "bg-gray-300" },
+      { name: "Black", value: "black", color: "bg-black" },
+      { name: "Gold", value: "gold", color: "bg-yellow-600" },
+    ],
+    sku: "N/A",
+    category: "SmartMobiles",
+    tags: ["mobile", "smartmobile"],
+    isNewArrival: true,
+  },
+  {
+    id: "hp-15-fc0239ay",
+    name: 'HP 15-fc0239AU AMD Athlon Silver 7120U 15.6" FHD Laptop',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    price: 600.0,
+    images: [
+      bannerMobile.src,
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+    ],
+    colors: [
+      { name: "Silver", value: "silver", color: "bg-gray-300" },
+      { name: "Black", value: "black", color: "bg-black" },
+      { name: "Gold", value: "gold", color: "bg-yellow-600" },
+    ],
+    sku: "N/A",
+    category: "SmartMobiles",
+    tags: ["mobile", "smartmobile"],
+    isNewArrival: true,
   },
 ];
 

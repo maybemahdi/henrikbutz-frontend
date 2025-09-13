@@ -50,7 +50,7 @@ export default function FAQDark() {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-950">
+    <section className="py-16 px-4 bg-black">
       <div className="container py-12 mx-auto border border-[#bd5a1971] rounded-2xl shadow-2xl bg-gradient-to-br from-gray-900 via-gray-950 to-black backdrop-blur">
         {/* Section Header */}
         <div className="text-center mb-12">

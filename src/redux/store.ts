@@ -6,6 +6,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { persistReducer, persistStore, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from "redux-persist";
 import authReducer from "./features/auth/authSlice";
+import cartReducer from "./features/cart/cartSlice";
+import WishlistReducer from "./features/wishlist/wishlistSlice";
 import { baseApi } from "./api/baseApi";
 
 const createNoopStorage = () => {
@@ -29,13 +31,30 @@ const persistAuthConfig = {
   storage,
 };
 
+const persistCartConfig = {
+  key: "cart",
+  storage,
+};
+
+const persistWishlistConfig = {
+  key: "wishlist",
+  storage,
+};
+
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+const persistedCartReducer = persistReducer(persistCartConfig, cartReducer);
+const persistedWishlistReducer = persistReducer(
+  persistWishlistConfig,
+  WishlistReducer
+);
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [baseApi.reducerPath]: baseApi.reducer,
       auth: persistedAuthReducer,
+      cart: persistedCartReducer,
+      wishlist: persistedWishlistReducer,
     },
     middleware: (getDefaultMiddlewares) =>
       getDefaultMiddlewares({

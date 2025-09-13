@@ -1,5 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 interface ButtonProps {
   label: string;
@@ -12,6 +14,7 @@ interface ButtonProps {
   customIcon?: React.ReactNode;
   iconPosition?: string;
   className?: string;
+  isLoading?: boolean;
 }
 
 const MyButton: React.FC<ButtonProps> = ({
@@ -25,6 +28,7 @@ const MyButton: React.FC<ButtonProps> = ({
   customIcon,
   iconPosition = "right",
   className,
+  isLoading = false,
 }) => {
   const baseClasses = cn(
     "rounded-[10px] text-base font-medium transition-all duration-300 cursor-pointer",
@@ -84,6 +88,12 @@ const MyButton: React.FC<ButtonProps> = ({
             )}
             {customIcon}
           </span>
+        )}
+
+        {isLoading ? (
+          <Spin indicator={<LoadingOutlined spin />} size="small" />
+        ) : (
+          ""
         )}
 
         {label}

@@ -2,22 +2,26 @@
 
 import { Button, InputNumber, Select } from "antd";
 import {
-    Bell,
-    Facebook,
-    GitCompare,
-    Heart,
-    Instagram,
-    Linkedin,
-    Paintbrush as Pinterest,
-    Tornado as Threads,
-    TicketIcon as TikTok,
-    Twitter,
-    Youtube,
+  Bell,
+  Facebook,
+  GitCompare,
+  Heart,
+  Instagram,
+  Linkedin,
+  Paintbrush as Pinterest,
+  Tornado as Threads,
+  TicketIcon as TikTok,
+  Twitter,
+  Youtube,
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { AddonSlider } from "../AddonSlider/AddonSlider";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
+import { useAppDispatch } from "@/redux/hooks";
+import { toast } from "sonner";
+import { addProduct } from "@/redux/features/cart/cartSlice";
+import { Product } from "@/types/product";
 
 const productImages = [
   "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
@@ -35,6 +39,44 @@ const colorOptions = [
 export function ProductDetailsSection() {
   const [selectedColor, setSelectedColor] = useState("black");
   const [quantity, setQuantity] = useState(1);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const productData: Product = {
+    id: "hp-15-fc0239au",
+    name: 'HP 15-fc0239AU AMD Athlon Silver 7120U 15.6" FHD Laptop',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    price: 600.0,
+    images: [
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg",
+    ],
+    colors: [
+      { name: "Silver", value: "silver", color: "bg-gray-300" },
+      { name: "Black", value: "black", color: "bg-black" },
+      { name: "Gold", value: "gold", color: "bg-yellow-600" },
+    ],
+    sku: "N/A",
+    category: "SmartMobiles",
+    tags: ["mobile", "smartmobile"],
+    isNewArrival: true,
+  };
+
+  const handleAddToCart = async () => {
+    setIsAddingToCart(true);
+    dispatch(
+      addProduct({
+        ...productData,
+        orderQuantity: quantity,
+      })
+    );
+    setIsAddingToCart(false);
+    toast.success(`${quantity} item(s) added to cart!`);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -133,7 +175,12 @@ export function ProductDetailsSection() {
             size="large"
             className="w-24"
           />
-          <MyButton label="Add to Cart" fullWidth />
+          <MyButton
+            onClick={handleAddToCart}
+            isLoading={isAddingToCart}
+            label="Add to Cart"
+            fullWidth
+          />
         </div>
 
         {/* Action Buttons */}

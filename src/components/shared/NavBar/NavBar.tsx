@@ -1,17 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { Drawer, Button } from "antd";
+import logo from "@/assets/images/logo.png";
+import { cartProductsQuantitySelector } from "@/redux/features/cart/cartSlice";
+import { wishlistProductsCountSelector } from "@/redux/features/wishlist/wishlistSlice";
+import { useAppSelector } from "@/redux/hooks";
 import {
+  HeartOutlined,
   MenuOutlined,
   SearchOutlined,
-  UserOutlined,
-  HeartOutlined,
   ShoppingCartOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import logo from "@/assets/images/logo.png";
+import { Button, Drawer } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const Navbar = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -24,6 +27,11 @@ const Navbar = () => {
     { label: "Blog", href: "/blog" },
     { label: "Contact Us", href: "/contact" },
   ];
+
+  // cart
+  const totalProductsLength = useAppSelector(cartProductsQuantitySelector) || 0;
+  const totalWishlistLength =
+    useAppSelector(wishlistProductsCountSelector) || 0;
 
   const showDrawer = () => {
     setDrawerVisible(true);
@@ -71,15 +79,22 @@ const Navbar = () => {
             <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors">
               <UserOutlined className="text-lg" />
             </button>
-            <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors">
-              <HeartOutlined className="text-lg" />
-            </button>
-            <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors relative">
-              <ShoppingCartOutlined className="text-lg" />
-              <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            <Link href="/wishlist">
+              <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors relative">
+                <HeartOutlined className="text-lg" />
+                <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {totalWishlistLength}
+                </span>
+              </button>
+            </Link>
+            <Link href="/cart">
+              <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors relative">
+                <ShoppingCartOutlined className="text-lg" />
+                <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {totalProductsLength}
+                </span>
+              </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
