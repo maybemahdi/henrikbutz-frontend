@@ -1,13 +1,12 @@
+import LoginPage from "@/components/modules/auth/LoginPage";
+import React from "react";
 
-
-import React from 'react';
-
-const page = () => {
-    return (
-        <div>
-           login
-        </div>
-    );
+const Login = () => {
+  return (
+    <div>
+      <LoginPage />
+    </div>
+  );
 };
 
-export default page;
+export default Login;

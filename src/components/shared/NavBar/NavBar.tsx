@@ -15,6 +15,7 @@ import { Button, Drawer } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
 const Navbar = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -39,6 +40,13 @@ const Navbar = () => {
 
   const onClose = () => {
     setDrawerVisible(false);
+  };
+
+  const user = {
+    name: "John Doe",
+    email: "Q9RQH@example.com",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    role: "USER",
   };
 
   return (
@@ -76,9 +84,6 @@ const Navbar = () => {
             <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors">
               <SearchOutlined className="text-lg" />
             </button>
-            <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors">
-              <UserOutlined className="text-lg" />
-            </button>
             <Link href="/wishlist">
               <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors relative">
                 <HeartOutlined className="text-lg" />
@@ -95,6 +100,16 @@ const Navbar = () => {
                 </span>
               </button>
             </Link>
+            {!user ? (
+              <button className="text-gray-300 hover:text-white p-2 rounded-md hover:bg-slate-700/50 transition-colors">
+                <UserOutlined className="text-lg" />
+              </button>
+            ) : (
+              <ProfileDropdown
+                userImage={user.image}
+                userName={user.name}
+              />
+            )}
           </div>
 
           {/* Mobile menu button */}

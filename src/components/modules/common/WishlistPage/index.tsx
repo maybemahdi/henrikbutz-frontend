@@ -34,12 +34,17 @@ const WishlistPage = () => {
           </h3>
         </div>
         {wishlistedProducts?.slice(0, 3).map((product) => (
-          <ProductCard bg="bg-black" btnAction="Add to Cart" key={product.id} product={product} />
+          <ProductCard
+            bg="bg-black"
+            btnAction="Add to Cart"
+            key={product.id}
+            product={product}
+          />
         ))}
       </div>
 
       {/* Best selling products */}
-      <BestSelling bg={"bg-black"} />
+      <BestSelling bg={"bg-black"} isDark />
 
       {/* FAQ */}
       <FAQDark />
