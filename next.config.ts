@@ -14,6 +14,30 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+
+    // Handle Recharts compatibility issues
+    config.module.rules.push({
+      test: /\.m?js$/,
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+
+    return config;
+  },
+  transpilePackages: ["recharts"],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
 };
 
 export default nextConfig;

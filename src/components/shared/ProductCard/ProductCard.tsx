@@ -88,7 +88,7 @@ export default function ProductCard({
             className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
               isInWishlist
                 ? "bg-red-500 text-white"
-                : "bg-white text-gray-600 hover:bg-gray-100"
+                : "bg-gray-500 text-white hover:bg-gray-600"
             }`}
           >
             <Heart
@@ -96,13 +96,13 @@ export default function ProductCard({
             />
           </button>
           <Link href={`/shop/${product.id}`}>
-            <button className="w-10 h-10 bg-white text-gray-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+            <button className="w-10 h-10 bg-gray-500 text-white hover:bg-gray-600 rounded-full flex items-center justify-center transition-colors">
               <Eye className="w-4 h-4" />
             </button>
           </Link>
           <button
             onClick={handleAddToCart}
-            className="w-10 h-10 bg-white text-gray-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-10 h-10 bg-gray-500 text-white hover:bg-gray-600 rounded-full flex items-center justify-center transition-colors"
           >
             <ShoppingCart className="w-4 h-4" />
           </button>

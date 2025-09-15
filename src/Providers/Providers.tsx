@@ -6,7 +6,9 @@ import ReduxStoreProvider from "@/redux/ReduxStoreProvider";
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <UserProvider>
-      <ReduxStoreProvider>{children}</ReduxStoreProvider>
+      <ReduxStoreProvider>
+        {children}
+        </ReduxStoreProvider>
     </UserProvider>
   );
 };

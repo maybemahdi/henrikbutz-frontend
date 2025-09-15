@@ -37,7 +37,7 @@ const cartSlice = createSlice({
     },
     incrementOrderQuantity: (state, action) => {
       const productToIncrement = state.products.find(
-        (product) => product.id === action.payload
+        (product: CartProduct) => product.id === action.payload
       );
 
       if (productToIncrement) {
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
     },
     decrementOrderQuantity: (state, action) => {
       const productToIncrement = state.products.find(
-        (product) => product.id === action.payload
+        (product: CartProduct) => product.id === action.payload
       );
 
       if (productToIncrement && productToIncrement.orderQuantity > 1) {
@@ -57,7 +57,7 @@ const cartSlice = createSlice({
     },
     removeProduct: (state, action) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.payload
+        (product: CartProduct) => product.id !== action.payload
       );
     },
     clearCart: (state) => {
@@ -78,7 +78,7 @@ export const cartProductsQuantitySelector = (state: RootState) => {
 
 export const orderSelector = (state: RootState) => {
   return {
-    products: state.cart.products.map((product) => ({
+    products: state.cart.products.map((product: CartProduct) => ({
       id: product.id,
       quantity: product.orderQuantity,
     })),
@@ -88,7 +88,7 @@ export const orderSelector = (state: RootState) => {
 //* Payment
 
 export const subTotalSelector = (state: RootState) => {
-  return state.cart.products.reduce((acc, product: CartProduct) => {
+  return state.cart.products.reduce((acc: number, product: CartProduct) => {
     // Check for discounted price or regular price
     const price = Number(product.price);
     // Add the total for this product to the accumulator

@@ -5,6 +5,7 @@ import companies from "@/assets/images/companies.png";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
 import { useEffect, useRef } from "react";
 import "@google/model-viewer";
+import Link from "next/link";
 
 const Banner = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,8 +54,10 @@ const Banner = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <MyButton label="Start Shopping" />
-              <MyButton label="Browse Category" variant="outline" />
+              <Link href={"/shop"}>
+                <MyButton label="Start Shopping" />
+              </Link>
+              {/* <MyButton label="Browse Category" variant="outline" /> */}
             </div>
           </div>
 

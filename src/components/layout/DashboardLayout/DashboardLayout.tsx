@@ -1,28 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+import logo from "@/assets/images/logo.png";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logoutHandler } from "@/utils/handleLogout";
-import { BsPlusCircleDotted } from "react-icons/bs";
-import { PiGitPullRequestLight } from "react-icons/pi";
-import { BiPurchaseTag } from "react-icons/bi";
-import { SiOpenproject } from "react-icons/si";
-import { ConfigProvider, Select } from "antd";
+import { ConfigProvider } from "antd";
 import {
-  Briefcase,
-  CircleGauge,
+  ChevronsUpDown,
   DollarSign,
-  FileCode,
   History,
   LogOut,
   Menu,
-  MonitorSmartphone,
-  Search,
-  ShieldCheck,
+  Rss,
+  ShoppingBag,
+  TableProperties,
   User,
-  UserCheck,
-  Users,
-  Users2,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -68,189 +60,48 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  let menuItems;
-  if (role === "SUPER_ADMIN") {
-    menuItems = [
-      {
-        icon: TbLayoutDashboardFilled,
-        text: "Dashboard",
-        path: "/super-admin",
-      },
-      {
-        icon: Users,
-        text: "Total Users",
-        path: "/super-admin/total-user",
-      },
-      {
-        icon: DollarSign,
-        text: "Total Earnings",
-        path: "/super-admin/total-earnings",
-      },
-      {
-        icon: History,
-        text: "Subscription History",
-        path: "/super-admin/subscription-history",
-      },
-    ];
-  }
-  if (role === "ADMIN") {
-    menuItems = [
-      {
-        icon: TbLayoutDashboardFilled,
-        text: "Dashboard",
-        path: "/admin",
-      },
-      {
-        icon: Briefcase,
-        text: "Projects",
-        path: "/admin/projects",
-      },
-      {
-        icon: FileCode,
-        text: "Cost Code",
-        path: "/admin/cost-code",
-      },
-      {
-        icon: MonitorSmartphone,
-        text: "Equipment",
-        path: "/admin/equipment",
-      },
-      {
-        icon: ShieldCheck,
-        text: "Sub Admin",
-        path: "/admin/sub-admin",
-      },
-      {
-        icon: Users2,
-        text: "Supervisor",
-        path: "/admin/supervisor",
-      },
-      {
-        icon: UserCheck,
-        text: "Employee",
-        path: "/admin/employee",
-      },
-    ];
-  }
-  if (role === "SUB_ADMIN") {
-    menuItems = [
-      {
-        icon: TbLayoutDashboardFilled,
-        text: "Dashboard",
-        path: "/sub-admin",
-      },
-      {
-        icon: Briefcase,
-        text: "Projects",
-        path: "/sub-admin/projects",
-      },
-      {
-        icon: FileCode,
-        text: "Cost Code",
-        path: "/sub-admin/cost-code",
-      },
-      {
-        icon: MonitorSmartphone,
-        text: "Equipment",
-        path: "/sub-admin/equipment",
-      },
-      {
-        icon: Users2,
-        text: "Supervisor",
-        path: "/sub-admin/supervisor",
-      },
-      {
-        icon: UserCheck,
-        text: "Employee",
-        path: "/sub-admin/employee",
-      },
-      {
-        icon: CircleGauge,
-        text: "PTO Requests",
-        path: "/sub-admin/pto",
-      },
-    ];
-  }
-  if (role === "SUPERVISOR") {
-    menuItems = [
-      {
-        icon: TbLayoutDashboardFilled,
-        text: "Dashboard",
-        path: "/supervisor",
-      },
-      {
-        icon: BsPlusCircleDotted,
-        text: "Add PTO request",
-        path: "/supervisor/add-pto-request",
-      },
-      {
-        icon: BsPlusCircleDotted,
-        text: "Add purchase",
-        path: "/supervisor/add-purchase",
-      },
-      {
-        icon: PiGitPullRequestLight,
-        text: "Employee PTO request",
-        path: "/supervisor/employe-pto-request",
-      },
-      {
-        icon: PiGitPullRequestLight,
-        text: "My PTO request",
-        path: "/supervisor/my-pto-request",
-      },
-      {
-        icon: BiPurchaseTag,
-        text: "My purchase",
-        path: "/supervisor/my-purchase",
-      },
-    ];
-  }
-  if (role === "EMPLOYEE") {
-    menuItems = [
-      {
-        icon: TbLayoutDashboardFilled,
-        text: "Dashboard",
-        path: "/employee",
-      },
-      {
-        icon: BsPlusCircleDotted,
-        text: "Add PTO request",
-        path: "/employee/add-pto-request",
-      },
-      {
-        icon: BsPlusCircleDotted,
-        text: "Add Project entry",
-        path: "/employee/add-project-entry",
-      },
-      {
-        icon: BsPlusCircleDotted,
-        text: "Add purchase",
-        path: "/employee/add-purchase",
-      },
-
-      {
-        icon: SiOpenproject,
-        text: "All Projects",
-        path: "/employee/all-project",
-      },
-      {
-        icon: PiGitPullRequestLight,
-        text: "My PTO request",
-        path: "/employee/my-pto-request",
-      },
-      {
-        icon: BiPurchaseTag,
-        text: "My purchase",
-        path: "/employee/my-purchase",
-      },
-    ];
-  }
-
+  const menuItems = [
+    {
+      icon: TbLayoutDashboardFilled,
+      text: "Overview",
+      path: "/admin",
+    },
+    {
+      icon: TableProperties,
+      text: "All Products",
+      path: "/admin/products",
+    },
+    {
+      icon: DollarSign,
+      text: "Total Sale",
+      path: "/admin/sales",
+    },
+    {
+      icon: ChevronsUpDown,
+      text: "Categories",
+      path: "/admin/categories",
+    },
+    {
+      icon: ShoppingBag,
+      text: "All Orders",
+      path: "/admin/orders",
+    },
+    {
+      icon: Rss,
+      text: "All Blogs",
+      path: "/admin/blogs",
+    },
+    {
+      icon: History,
+      text: "Subscription History",
+      path: "/admin/subscription",
+    },
+  ];
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#1E6A92",
+          colorPrimary: "#073F70",
         },
       }}
     >
@@ -262,8 +113,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="flex items-center justify-between h-16 px-4">
           <Link href="/" className="flex items-center justify-center">
-            <h4 className="text-2xl font-semibold">Logo</h4>
-            {/* <Image src={logo.src} width={100} height={100} alt="logo" /> */}
+            {/* <h4 className="text-2xl font-semibold">Logo</h4> */}
+            <Image
+              src={logo.src}
+              width={100}
+              height={100}
+              alt="logo"
+              className="w-48 h-auto mx-auto"
+              priority
+              quality={100}
+            />
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -315,19 +174,19 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </button>
 
             <h4 className="flex items-center justify-center text-2xl font-semibold">
-              {pathname === "/"
-                ? "Dashboard"
+              {pathname === "/admin"
+                ? "Overview"
                 : pathname
-                    ?.split("/")[1]
+                    ?.split("/")[2]
                     ?.split("-")
                     ?.join(" ")
                     ?.charAt(0)
                     ?.toUpperCase() +
-                  pathname?.split("/")[1]?.split("-")?.join(" ")?.slice(1)}
+                  pathname?.split("/")[2]?.split("-")?.join(" ")?.slice(1)}
             </h4>
 
             {/* changing role on frontend for testing */}
-            <div className="hidden md:flex flex-1 max-w-md ml-4">
+            {/* <div className="hidden md:flex flex-1 max-w-md ml-4">
               <div className="relative w-full">
                 <Select
                   value={customRole}
@@ -342,10 +201,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   ]}
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* Search */}
-            <div className="hidden md:flex flex-1 max-w-md ml-4">
+            {/* <div className="hidden md:flex flex-1 max-w-md ml-4">
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <Search className="w-5 h-5 text-gray-400" />
@@ -356,7 +215,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* User Actions */}
             <div className="flex items-center space-x-4">
