@@ -13,6 +13,7 @@ const Stats = ({
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {stats.map((stat: any, index: number) => (
         <div
+        key={index}
           className={`bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow duration-200 `}
         >
           <div className="flex items-start justify-between">

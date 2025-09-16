@@ -12,7 +12,7 @@ const Banner = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.7; // 0.7 = half speed, 1 = normal, 2 = double speed
+      videoRef.current.playbackRate = 0.4; // 0.7 = half speed, 1 = normal, 2 = double speed
     }
   }, []);
   return (
@@ -67,6 +67,15 @@ const Banner = () => {
             <model-viewer
               src="/Phone.glb"
               alt="iPhone 17 Pro Max"
+              auto-rotate
+              camera-controls
+              rotation-per-second="30deg"
+              style={{ width: "500px", height: "600px" }}
+            />
+            {/* @ts-expect-error model-viewer is a custom element */}
+            <model-viewer
+              src="/airpods_pro.glb"
+              alt="AirPods Pro"
               auto-rotate
               camera-controls
               rotation-per-second="30deg"

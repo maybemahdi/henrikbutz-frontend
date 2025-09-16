@@ -67,9 +67,10 @@ const SalesReport = () => {
       labels: earningsOrg.map((e) => e.month),
       datasets: [
         {
+          id: "sales",
           label: "Total Sale",
           data: earningsOrg.map((e) => e.earning),
-          backgroundColor: "#111827",
+          backgroundColor: "#FF6903",
           borderRadius: 10,
           barPercentage: 0.5,
         },
@@ -85,6 +86,8 @@ const SalesReport = () => {
 
     return {
       responsive: true,
+      maintainAspectRatio: false,
+      resizeDelay: 200,
       plugins: {
         legend: { display: false },
         tooltip: {

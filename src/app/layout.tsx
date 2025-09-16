@@ -23,7 +23,7 @@ export default function RootLayout({
         <MyContextProvider>
           <SessionProviderForNextAuth>
             <Providers>
-              <Toaster />
+              <Toaster richColors />
               {children}
             </Providers>
           </SessionProviderForNextAuth>

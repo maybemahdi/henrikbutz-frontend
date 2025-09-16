@@ -71,11 +71,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       text: "All Products",
       path: "/admin/products",
     },
-    {
-      icon: DollarSign,
-      text: "Total Sale",
-      path: "/admin/sales",
-    },
+    // {
+    //   icon: DollarSign,
+    //   text: "Total Sale",
+    //   path: "/admin/sales",
+    // },
     {
       icon: ChevronsUpDown,
       text: "Categories",
