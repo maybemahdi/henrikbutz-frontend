@@ -1,9 +1,17 @@
+"use client";
 import Link from "next/link";
 import { ProductsGrid } from "./ProductsGrid/ProductsGrid";
 import { ShopSidebar } from "./ShopSidebar/ShopSidebar";
 import FooterDark from "@/components/shared/Footer/FooterDark";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+const filterableOptions = ["New arrival", "Best selling", "Featured"];
 
 export default function ShopPage() {
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(
+    filterableOptions[0]
+  );
   return (
     <div className="min-h-screen bg-black">
       {/* Breadcrumb and Results Header */}
@@ -24,15 +32,23 @@ export default function ShopPage() {
               Showing 1-12 of 80 results
             </span>
             <div className="flex flex-wrap gap-2">
-              <button className="px-4 py-2 bg-orange-500 text-white rounded-full text-sm hover:bg-orange-600 transition-colors">
-                New arrival
-              </button>
-              <button className="px-4 py-2 border border-gray-600 text-white rounded-full text-sm hover:bg-gray-800 transition-colors">
-                Best selling
-              </button>
-              <button className="px-4 py-2 border border-gray-600 text-white rounded-full text-sm hover:bg-gray-800 transition-colors">
-                Featured
-              </button>
+              {
+                // Render filterable options
+                filterableOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => setSelectedFilter(option)}
+                    className={cn(
+                      "px-4 py-2 bg-gray-600 text-white rounded-full text-sm hover:bg-orange-500 transition-colors duration-300",
+                      {
+                        "bg-orange-500": selectedFilter === option,
+                      }
+                    )}
+                  >
+                    {option}
+                  </button>
+                ))
+              }
             </div>
           </div>
         </div>

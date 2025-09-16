@@ -3,7 +3,7 @@
 import ProductCard from "@/components/shared/ProductCard/ProductCard";
 import { Carousel } from "antd";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import bannerMobile from "@/assets/images/bannerMobile.png";
 import { Product } from "@/types/product";
 
@@ -108,6 +108,7 @@ export const products: Product[] = [
 ];
 
 export default function OurCollection() {
+  const [selectedCategory, setSelectedCategory] = useState("SmartMobiles");
   const carouselRef = useRef<any>(null);
 
   const nextSlide = () => {
@@ -136,7 +137,7 @@ export default function OurCollection() {
           <div className="flex items-center">
             <button
               onClick={prevSlide}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow mr-4"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow mr-4"
             >
               <ChevronLeft className="w-5 h-5 text-white" />
             </button>
@@ -164,7 +165,7 @@ export default function OurCollection() {
                   {
                     breakpoint: 480,
                     settings: {
-                      slidesToShow: 2,
+                      slidesToShow: 1,
                     },
                   },
                 ]}
@@ -172,8 +173,9 @@ export default function OurCollection() {
                 {categories.map((category, index) => (
                   <div key={category} className="px-2">
                     <button
-                      className={`w-full px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                        index === 0
+                    onClick={() => setSelectedCategory(category)}
+                      className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
+                        selectedCategory === category
                           ? "bg-orange-500 text-white shadow-lg"
                           : "bg-gray-800 text-white hover:bg-gray-700"
                       }`}
@@ -187,7 +189,7 @@ export default function OurCollection() {
 
             <button
               onClick={nextSlide}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow ml-4"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow ml-4"
             >
               <ChevronRight className="w-5 h-5 text-white" />
             </button>

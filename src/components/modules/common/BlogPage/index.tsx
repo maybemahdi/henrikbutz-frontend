@@ -83,6 +83,7 @@ const featuredPost = blogPosts.find((post) => post.featured);
 export const regularPosts = blogPosts.filter((post) => !post.featured);
 
 const BlogPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState("SmartMobiles");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [objectQuery, setObjectQuery] = useState<
@@ -150,7 +151,7 @@ const BlogPage = () => {
           <div className="flex items-center">
             <button
               onClick={prevSlide}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow mr-4"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow mr-4"
             >
               <ChevronLeft className="w-5 h-5 text-white" />
             </button>
@@ -179,7 +180,7 @@ const BlogPage = () => {
                   {
                     breakpoint: 480,
                     settings: {
-                      slidesToShow: 2,
+                      slidesToShow: 1,
                     },
                   },
                 ]}
@@ -187,8 +188,9 @@ const BlogPage = () => {
                 {categories?.map((category, index) => (
                   <div key={category} className="px-2">
                     <button
-                      className={`w-full px-6 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
-                        index === 0
+                      onClick={() => setSelectedCategory(category)}
+                      className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
+                        selectedCategory === category
                           ? "bg-orange-500 text-white shadow-lg"
                           : "bg-gray-800 text-white hover:bg-gray-700"
                       }`}
@@ -202,7 +204,7 @@ const BlogPage = () => {
 
             <button
               onClick={nextSlide}
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow ml-4"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-core-gradient shadow-md hover:shadow-lg transition-shadow ml-4"
             >
               <ChevronRight className="w-5 h-5 text-white" />
             </button>

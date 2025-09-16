@@ -155,7 +155,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
           {/* Menu Items */}
           <div className="py-1">
             {menuItems.map((item, index) => (
-              <Link href={item.href}>
+              <Link key={index} href={item.href}>
                 <button
                   key={index}
                   onClick={() => handleMenuClick(item.href, item.isLogout)}
