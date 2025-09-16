@@ -93,10 +93,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     },
     {
       icon: History,
-      text: "Subscription History",
+      text: "Subscription",
       path: "/admin/subscription",
     },
   ];
+
   return (
     <ConfigProvider
       theme={{

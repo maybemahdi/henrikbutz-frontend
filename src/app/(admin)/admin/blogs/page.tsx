@@ -1,10 +1,9 @@
-import BlogsPage from "@/components/modules/admin/BlogsPage";
-import React from "react";
+import BlogManagement from "@/components/modules/admin/BlogsPage";
 
 const Blogs = () => {
   return (
     <div>
-      <BlogsPage />
+      <BlogManagement />
     </div>
   );
 };

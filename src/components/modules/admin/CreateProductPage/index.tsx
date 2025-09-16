@@ -4,16 +4,16 @@ import MyButton from "@/components/ui/core/MyButton/MyButton";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import {
-    Button,
-    Card,
-    Col,
-    Form,
-    Input,
-    InputNumber,
-    message,
-    Row,
-    Select,
-    Upload,
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  message,
+  Row,
+  Select,
+  Upload,
 } from "antd";
 import { useEffect, useState } from "react";
 
@@ -52,30 +52,31 @@ export default function CreateProductPage() {
   const [faqs, setFaqs] = useState<FAQ[]>([{ question: "", answer: "" }]);
   const [previewData, setPreviewData] = useState({
     name: "iPhone 17 Pro",
-    price: 1099.00,
+    price: 1099.0,
     image: "/iphone-17-pro-with-purple-gradient-screen-showing-.jpg",
   });
 
-const handleFormChange = () => {
-  const values = (form as any).getFieldsValue();
+  const handleFormChange = () => {
+    const values = (form as any).getFieldsValue();
 
-  let previewImage = "/iphone-14-pro-with-purple-gradient-screen-showing-.jpg";
+    let previewImage =
+      "/iphone-14-pro-with-purple-gradient-screen-showing-.jpg";
 
-  if (fileList.length > 0) {
-    const firstFile = fileList[0];
-    if (firstFile.originFileObj) {
-      previewImage = URL.createObjectURL(firstFile.originFileObj);
-    } else if (firstFile.url) {
-      previewImage = firstFile.url;
+    if (fileList.length > 0) {
+      const firstFile = fileList[0];
+      if (firstFile.originFileObj) {
+        previewImage = URL.createObjectURL(firstFile.originFileObj);
+      } else if (firstFile.url) {
+        previewImage = firstFile.url;
+      }
     }
-  }
 
-  setPreviewData({
-    name: values.productTitle || "Product Name",
-    price: values.price || 0,
-    image: previewImage,
-  });
-};
+    setPreviewData({
+      name: values.productTitle || "Product Name",
+      price: values.price || 0,
+      image: previewImage,
+    });
+  };
 
   useEffect(() => {
     handleFormChange();
@@ -144,6 +145,7 @@ const handleFormChange = () => {
         {/* Form Section */}
         <Col span={16}>
           <Card className="shadow-sm">
+            <h2 className="text-2xl font-bold mb-4">Add Product</h2>
             <Form
               form={form}
               layout="vertical"
@@ -326,7 +328,13 @@ const handleFormChange = () => {
 
               {/* Submit Button */}
               <Form.Item>
-                <MyButton label="Add Product" fullWidth type="submit" iconPosition="left" customIcon={<PlusOutlined />} />
+                <MyButton
+                  label="Add Product"
+                  fullWidth
+                  type="submit"
+                  iconPosition="left"
+                  customIcon={<PlusOutlined />}
+                />
               </Form.Item>
             </Form>
           </Card>
