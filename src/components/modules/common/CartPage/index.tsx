@@ -1,4 +1,5 @@
 "use client";
+
 import Footer from "@/components/shared/Footer/Footer";
 import ProductCard from "@/components/shared/ProductCard/ProductCard";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
@@ -25,6 +26,7 @@ import { useRef } from "react";
 import FAQ from "../HomePage/FAQ/FAQ";
 import { products } from "../HomePage/OurCollection/OurCollection";
 import BestSelling from "./BestSelling/BestSelling";
+import { motion } from "framer-motion";
 
 const { Title, Text } = Typography;
 
@@ -33,14 +35,12 @@ export default function CartPage() {
   const cartProducts = useAppSelector(orderedProductsSelector);
   const subTotal = useAppSelector(subTotalSelector);
 
-  // Calculate total (in this case same as subtotal, but could include taxes, shipping, etc.)
   const total = subTotal;
-
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startHolding = (action: () => void) => {
-    action(); // fire once immediately
-    intervalRef.current = setInterval(action, 150); // repeat every 150ms
+    action();
+    intervalRef.current = setInterval(action, 150);
   };
 
   const stopHolding = () => {
@@ -50,17 +50,12 @@ export default function CartPage() {
     }
   };
 
-  const handleIncrement = (productId: string) => {
+  const handleIncrement = (productId: string) =>
     dispatch(incrementOrderQuantity(productId));
-  };
-
-  const handleDecrement = (productId: string) => {
+  const handleDecrement = (productId: string) =>
     dispatch(decrementOrderQuantity(productId));
-  };
-
-  const handleRemove = (productId: string) => {
+  const handleRemove = (productId: string) =>
     dispatch(removeProduct(productId));
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -74,7 +69,12 @@ export default function CartPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
-          <div className="lg:col-span-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="lg:col-span-2"
+          >
             <Card className="shadow-sm">
               {/* Table Header */}
               <div className="grid grid-cols-12 gap-4 pb-4 border-b border-gray-200 font-medium text-gray-700">
@@ -89,9 +89,12 @@ export default function CartPage() {
               {/* Cart Items */}
               <div className="space-y-4 mt-4">
                 {cartProducts?.map((product) => (
-                  <div
+                  <motion.div
                     key={product.id}
                     className="grid grid-cols-12 gap-4 items-center py-4 border-b border-gray-100"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                   >
                     {/* Remove Button */}
                     <div className="col-span-1">
@@ -136,7 +139,6 @@ export default function CartPage() {
                       <Space.Compact>
                         <Button
                           icon={<MinusOutlined />}
-                          //   onClick={() => handleDecrement(product.id)}
                           onMouseDown={() =>
                             startHolding(() => handleDecrement(product.id))
                           }
@@ -155,7 +157,6 @@ export default function CartPage() {
                         />
                         <Button
                           icon={<PlusOutlined />}
-                          //   onClick={() => handleIncrement(product.id)}
                           onMouseDown={() =>
                             startHolding(() => handleIncrement(product.id))
                           }
@@ -171,7 +172,7 @@ export default function CartPage() {
                         ${(product.price * product.orderQuantity).toFixed(2)}
                       </Text>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
 
                 {cartProducts.length === 0 && (
@@ -181,10 +182,15 @@ export default function CartPage() {
                 )}
               </div>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Cart Totals */}
-          <div className="lg:col-span-1">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="lg:col-span-1"
+          >
             <Card className="shadow-sm">
               <Title level={4} className="mb-4">
                 Cart Totals
@@ -204,12 +210,17 @@ export default function CartPage() {
                 <MyButton label="Proceed to Checkout" fullWidth />
               </div>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Related products */}
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10 md:my-16">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10 md:my-16"
+      >
         <div className="col-span-3 mb-5">
           <h3 className="text-2xl md:text-[34px] font-semibold text-center">
             Related Products
@@ -223,13 +234,25 @@ export default function CartPage() {
             product={product}
           />
         ))}
-      </div>
+      </motion.div>
 
       {/* Best selling products */}
-      <BestSelling bg={"bg-black"} />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <BestSelling bg={"bg-black"} />
+      </motion.div>
 
       {/* FAQ */}
-      <FAQ />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <FAQ />
+      </motion.div>
 
       {/* Footer */}
       <Footer />

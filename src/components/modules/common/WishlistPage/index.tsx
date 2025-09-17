@@ -6,6 +6,7 @@ import React from "react";
 import BestSelling from "../CartPage/BestSelling/BestSelling";
 import FAQDark from "../HomePage/FAQ/FAQDark";
 import FooterDark from "@/components/shared/Footer/FooterDark";
+import { motion } from "framer-motion";
 
 const WishlistPage = () => {
   const wishlistedProducts = useAppSelector(wishlistSelector);
@@ -13,7 +14,6 @@ const WishlistPage = () => {
   if (!wishlistedProducts?.length) {
     return (
       <div className="bg-black min-h-[calc(100vh-60px)] flex items-center justify-center">
-        {/* Related products */}
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10 md:my-16">
           <div className="col-span-3 mb-5">
             <h3 className="text-2xl md:text-[34px] text-white font-semibold text-center">
@@ -24,10 +24,16 @@ const WishlistPage = () => {
       </div>
     );
   }
+
   return (
     <div className="bg-black min-h-screen pt-6">
       {/* Wishlist products */}
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10 md:my-16">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10 md:my-16"
+      >
         <div className="col-span-3 mb-5">
           <h3 className="text-2xl md:text-[34px] text-black dark:text-white font-semibold text-center">
             Your Wishlist
@@ -41,13 +47,25 @@ const WishlistPage = () => {
             product={product}
           />
         ))}
-      </div>
+      </motion.div>
 
       {/* Best selling products */}
-      <BestSelling bg={"bg-black"} isDark />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <BestSelling bg={"bg-black"} isDark />
+      </motion.div>
 
       {/* FAQ */}
-      <FAQDark />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <FAQDark />
+      </motion.div>
 
       {/* Footer */}
       <FooterDark />

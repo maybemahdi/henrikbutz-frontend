@@ -78,7 +78,7 @@ const Banner = () => {
               alt="iPhone 17 Pro Max"
               auto-rotate
               camera-controls
-              rotation-per-second="30deg"
+              rotation-per-second="-30deg"
               style={{ width: "500px", height: "600px" }}
             />
             {/* @ts-expect-error model-viewer is a custom element */}
