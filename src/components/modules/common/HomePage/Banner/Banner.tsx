@@ -1,25 +1,23 @@
 "use client";
 
-// import bannerMobile from "@/assets/images/bannerMobile.png";
 import companies from "@/assets/images/companies.png";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
 import { useEffect, useRef } from "react";
 import "@google/model-viewer";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.4; // 0.7 = half speed, 1 = normal, 2 = double speed
+      videoRef.current.playbackRate = 0.4;
     }
   }, []);
+
   return (
-    <section
-      // style={{ backgroundImage: `url(${heroBg.src})` }}
-      className="relative bg-cover bg-no-repeat min-h-[calc(100vh-0px)] overflow-hidden flex flex-col justify-center items-center"
-    >
+    <section className="relative bg-cover bg-no-repeat min-h-[calc(100vh-0px)] overflow-hidden flex flex-col justify-center items-center">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-orange-900/20"></div>
 
@@ -39,7 +37,13 @@ const Banner = () => {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
           {/* Left Content */}
-          <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="space-y-8"
+          >
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl font-semibold text-white !leading-tight">
                 <span className="text-balance">Power Up Your Lifestyle</span>
@@ -57,12 +61,17 @@ const Banner = () => {
               <Link href={"/shop"}>
                 <MyButton label="Start Shopping" />
               </Link>
-              {/* <MyButton label="Browse Category" variant="outline" /> */}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content - Product Images */}
-          <div className="relative flex justify-center items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative flex justify-center items-center"
+          >
             {/* @ts-expect-error model-viewer is a custom element */}
             <model-viewer
               src="/Phone.glb"
@@ -81,13 +90,19 @@ const Banner = () => {
               rotation-per-second="30deg"
               style={{ width: "500px", height: "600px" }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Brand Logos Section */}
-        <div className="pt-12 border-t border-gray-700/50">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="pt-12 border-t border-gray-700/50"
+        >
           <img src={companies.src} alt="Brand Logos" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

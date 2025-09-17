@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import aboutBannerBg from "@/assets/images/aboutBannerBg.png";
 import aboutRightSideImage from "@/assets/images/aboutRightSideImage.png";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
@@ -10,19 +13,24 @@ export default function AboutBanner() {
       style={{ backgroundImage: `url(${aboutBannerBg.src})` }}
       className="relative bg-cover bg-no-repeat min-h-screen overflow-hidden"
     >
-      {/* Background Pattern */}
       <div className="absolute inset-0 bg-black/60"></div>
 
       <div className="relative z-20 container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left Content */}
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             {/* Breadcrumb */}
             <nav className="flex items-center space-x-2 text-white/70 text-sm mb-16">
               <Link href="/">Home</Link>
               <span>{">"}</span>
               <span className="text-white">About us</span>
             </nav>
+
             {/* Section Label */}
             <div className="flex items-center justify-center space-x-4">
               <div className="w-12 h-px bg-white"></div>
@@ -157,12 +165,19 @@ export default function AboutBanner() {
 
             {/* CTA Button */}
             <div className="pt-6">
-              <MyButton label="Shop Now" variant="outline" />
+              <Link href="/shop">
+                <MyButton label="Shop Now" variant="outline" />
+              </Link>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content - Product Showcase */}
-          <div className="relative flex justify-center items-center">
+          <motion.div
+            className="relative flex justify-center items-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
             <div className="relative">
               <Image
                 src={aboutRightSideImage.src}
@@ -174,7 +189,7 @@ export default function AboutBanner() {
 
             {/* Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-orange-500/20 blur-3xl rounded-full"></div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface FAQItem {
   id: number;
@@ -43,7 +44,7 @@ const faqData: FAQItem[] = [
 ];
 
 export default function FAQ() {
-  const [openItem, setOpenItem] = useState<number | null>(1); // First item open by default
+  const [openItem, setOpenItem] = useState<number | null>(1);
 
   const toggleItem = (id: number) => {
     setOpenItem(openItem === id ? null : id);
@@ -53,20 +54,45 @@ export default function FAQ() {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container py-12 mx-auto border-2 border-blue-300 rounded-lg">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <span className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
             Frequently Asked Questions
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Quick Help Before You Design
           </h2>
-        </div>
+        </motion.div>
 
-        {/* FAQ Container */}
-        <div className="max-w-[80%] mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+        {/* FAQ Items */}
+        <motion.div
+          className="max-w-[80%] mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+        >
           {faqData.map((item, index) => (
-            <div
+            <motion.div
               key={item.id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4, ease: "easeOut" as const },
+                },
+              }}
               className={`${index !== 0 ? "border-t border-gray-200" : ""}`}
             >
               <button
@@ -83,16 +109,24 @@ export default function FAQ() {
                 />
               </button>
 
-              {openItem === item.id && (
-                <div className="px-6 pb-6">
-                  <div className="text-gray-600 leading-relaxed">
-                    {item.answer}
-                  </div>
+              {/* Animated Answer */}
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={
+                  openItem === item.id
+                    ? { height: "auto", opacity: 1 }
+                    : { height: 0, opacity: 0 }
+                }
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-6 text-gray-600 leading-relaxed">
+                  {item.answer}
                 </div>
-              )}
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

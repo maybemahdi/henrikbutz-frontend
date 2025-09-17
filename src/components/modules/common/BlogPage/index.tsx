@@ -8,6 +8,7 @@ import blogCover from "@/assets/images/blogCover.png";
 import Link from "next/link";
 import { UserOutlined } from "@ant-design/icons";
 import FooterDark from "@/components/shared/Footer/FooterDark";
+import { motion } from "framer-motion";
 
 const blogPosts = [
   {
@@ -89,14 +90,8 @@ const BlogPage = () => {
   const [objectQuery, setObjectQuery] = useState<
     { name: string; value: any }[]
   >([
-    {
-      name: "page",
-      value: currentPage,
-    },
-    {
-      name: "limit",
-      value: pageSize,
-    },
+    { name: "page", value: currentPage },
+    { name: "limit", value: pageSize },
   ]);
 
   const handlePageChange = (page: number, size: number) => {
@@ -106,29 +101,23 @@ const BlogPage = () => {
 
   useEffect(() => {
     setObjectQuery([
-      {
-        name: "page",
-        value: currentPage,
-      },
-      {
-        name: "limit",
-        value: pageSize,
-      },
+      { name: "page", value: currentPage },
+      { name: "limit", value: pageSize },
     ]);
   }, [currentPage, pageSize]);
 
   const carouselRef = useRef<any>(null);
+  const nextSlide = () => carouselRef.current?.next();
+  const prevSlide = () => carouselRef.current?.prev();
 
-  const nextSlide = () => {
-    carouselRef.current?.next();
-  };
-
-  const prevSlide = () => {
-    carouselRef.current?.prev();
-  };
   return (
     <div className="min-h-screen bg-black">
-      <div className="container mx-auto px-4 py-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto px-4 py-6"
+      >
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm container mx-auto py-8">
           <Link href={"/"} className="text-gray-400">
@@ -138,16 +127,28 @@ const BlogPage = () => {
           <span className="text-white">Blog</span>
         </div>
 
-        <Image
-          src={blogCover.src}
-          alt="Blog Cover"
-          className="my-12 h-[200px] md:h-[387px] w-auto"
-          width={1000}
-          height={100}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="my-12"
+        >
+          <Image
+            src={blogCover.src}
+            alt="Blog Cover"
+            className="h-[200px] md:h-[387px] w-auto"
+            width={1000}
+            height={100}
+          />
+        </motion.div>
 
         {/* Categories Slider */}
-        <div className="relative my-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative my-12"
+        >
           <div className="flex items-center">
             <button
               onClick={prevSlide}
@@ -165,27 +166,12 @@ const BlogPage = () => {
                 draggable
                 slidesToScroll={1}
                 responsive={[
-                  {
-                    breakpoint: 1024,
-                    settings: {
-                      slidesToShow: 4,
-                    },
-                  },
-                  {
-                    breakpoint: 768,
-                    settings: {
-                      slidesToShow: 3,
-                    },
-                  },
-                  {
-                    breakpoint: 480,
-                    settings: {
-                      slidesToShow: 1,
-                    },
-                  },
+                  { breakpoint: 1024, settings: { slidesToShow: 4 } },
+                  { breakpoint: 768, settings: { slidesToShow: 3 } },
+                  { breakpoint: 480, settings: { slidesToShow: 1 } },
                 ]}
               >
-                {categories?.map((category, index) => (
+                {categories?.map((category) => (
                   <div key={category} className="px-2">
                     <button
                       onClick={() => setSelectedCategory(category)}
@@ -209,59 +195,70 @@ const BlogPage = () => {
               <ChevronRight className="w-5 h-5 text-white" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="pt-6 pb-12">
-          <div className="max-w-7xl mx-auto">
-            {featuredPost && (
-              <div className="mb-8">
-                <Card
-                  className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-none shadow-2xl overflow-hidden"
-                  bodyStyle={{ padding: 0 }}
-                >
-                  <div className="grid lg:grid-cols-2 gap-0">
-                    <div className="relative h-80 lg:h-auto">
-                      <img
-                        src={featuredPost.image || "/placeholder.svg"}
-                        alt={featuredPost.title}
-                        className="w-full h-full object-cover"
+        <div className="pt-6 pb-12 max-w-7xl mx-auto">
+          {featuredPost && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="mb-8"
+            >
+              <Card
+                className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-none shadow-2xl overflow-hidden"
+                styles={{ body: { padding: 0 } }}
+              >
+                <div className="grid lg:grid-cols-2 gap-0">
+                  <div className="relative h-80 lg:h-auto">
+                    <img
+                      src={featuredPost.image || "/placeholder.svg"}
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col justify-center bg-[#000]">
+                    <Tag color="blue" className="w-fit mb-4 text-xs">
+                      {featuredPost.category}
+                    </Tag>
+                    <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+                      {featuredPost.title}
+                    </h1>
+                    <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                      {featuredPost.excerpt}
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <Avatar
+                        size={48}
+                        src={featuredPost.author.avatar}
+                        icon={<UserOutlined />}
+                        className="border-2 border-white/20"
                       />
-                    </div>
-                    <div className="p-8 flex flex-col justify-center bg-[#000]">
-                      <Tag color="blue" className="w-fit mb-4 text-xs">
-                        {featuredPost.category}
-                      </Tag>
-                      <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-                        {featuredPost.title}
-                      </h1>
-                      <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                        {featuredPost.excerpt}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <Avatar
-                          size={48}
-                          src={featuredPost.author.avatar}
-                          icon={<UserOutlined />}
-                          className="border-2 border-white/20"
-                        />
-                        <div>
-                          <p className="text-white font-semibold text-lg">
-                            {featuredPost.author.name}
-                          </p>
-                          <p className="text-gray-400 text-sm">
-                            {featuredPost.author.role}
-                          </p>
-                        </div>
+                      <div>
+                        <p className="text-white font-semibold text-lg">
+                          {featuredPost.author.name}
+                        </p>
+                        <p className="text-gray-400 text-sm">
+                          {featuredPost.author.role}
+                        </p>
                       </div>
                     </div>
                   </div>
-                </Card>
-              </div>
-            )}
+                </div>
+              </Card>
+            </motion.div>
+          )}
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {regularPosts.map((post) => (
-                <Link key={post.id} href={`/blog/${post.id}`}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularPosts.map((post, index) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link href={`/blog/${post.id}`}>
                   <Card
                     className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-all duration-300 hover:scale-105 cursor-pointer shadow-xl"
                     cover={
@@ -304,12 +301,18 @@ const BlogPage = () => {
                     </div>
                   </Card>
                 </Link>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
+
         {/* Pagination */}
-        <div className="flex items-center justify-center w-fit mx-auto gap-4 mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex items-center justify-center w-fit mx-auto gap-4 mb-5"
+        >
           <Pagination
             current={currentPage}
             pageSize={pageSize}
@@ -317,8 +320,8 @@ const BlogPage = () => {
             onChange={handlePageChange}
             className="custom-pagination"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <FooterDark />
     </div>
   );

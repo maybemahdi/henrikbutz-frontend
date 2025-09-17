@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const categories = [
@@ -30,30 +31,30 @@ const bestSellerProducts = [
   },
   {
     id: 2,
-    name: "Essential Comfort T-Shirt",
-    price: 50.0,
-    rating: 4.7,
+    name: "Wireless Bass Headphones",
+    price: 120.0,
+    rating: 4.9,
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     id: 3,
-    name: "Essential Comfort T-Shirt",
-    price: 50.0,
-    rating: 4.7,
+    name: "4K Smart TV Stick",
+    price: 80.0,
+    rating: 4.5,
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     id: 4,
-    name: "Essential Comfort T-Shirt",
-    price: 50.0,
-    rating: 4.7,
+    name: "Pro Gaming Mouse",
+    price: 45.0,
+    rating: 4.6,
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     id: 5,
-    name: "Essential Comfort T-Shirt",
-    price: 50.0,
-    rating: 4.7,
+    name: "Fitness Smart Watch",
+    price: 150.0,
+    rating: 4.8,
     image: "/placeholder.svg?height=60&width=60",
   },
 ];
@@ -63,40 +64,76 @@ const productTags = [
   "laptop",
   "watch",
   "computer",
-  "Sweater",
-  "Tank top",
+  "sweater",
+  "tank top",
+  "gaming",
+  "headphones",
 ];
 
 export function ShopSidebar() {
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [activeCategory, setActiveCategory] = useState("Smart Mobiles");
 
+  // Animation Variants
+  const sectionVariant = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const listVariant = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  };
+
   return (
-    <div className="space-y-6">
+    <motion.div
+      className="space-y-6"
+      initial="hidden"
+      animate="visible"
+      variants={listVariant}
+    >
       {/* Category Section */}
-      <div className="rounded-lg p-4">
+      <motion.div
+        variants={sectionVariant}
+        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+      >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Category
         </h3>
-        <div className="space-y-2">
+        <motion.div className="space-y-2" variants={listVariant}>
           {categories.map((category) => (
-            <button
+            <motion.button
               key={category.name}
               onClick={() => setActiveCategory(category.name)}
+              variants={itemVariant}
+              whileHover={{ scale: 1.03, x: 5 }}
+              whileTap={{ scale: 0.95 }}
               className={`block w-full text-left px-3 py-2 rounded text-sm transition-colors ${
                 activeCategory === category.name
-                  ? "text-blue-500"
-                  : "text-gray-300 hover:text-white"
+                  ? "text-orange-500 bg-gray-800"
+                  : "text-gray-300 hover:text-white hover:bg-gray-800/50"
               }`}
             >
               {category.name}
-            </button>
+            </motion.button>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Price Filter Section */}
-      <div className="rounded-lg p-4">
+      <motion.div
+        variants={sectionVariant}
+        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+      >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Filter by price
         </h3>
@@ -109,26 +146,32 @@ export function ShopSidebar() {
             <input
               type="range"
               min="0"
-              max="100"
+              max="500"
+              step="10"
               value={priceRange[1]}
               onChange={(e) =>
                 setPriceRange([priceRange[0], Number.parseInt(e.target.value)])
               }
-              className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+              className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider accent-orange-500"
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Best Seller Section */}
-      <div className="rounded-lg p-4">
+      <motion.div
+        variants={sectionVariant}
+        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+      >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Best Seller
         </h3>
-        <div className="space-y-3">
+        <motion.div className="space-y-3" variants={listVariant}>
           {bestSellerProducts.map((product) => (
-            <div
+            <motion.div
               key={product.id}
+              variants={itemVariant}
+              whileHover={{ scale: 1.02 }}
               className="flex items-center gap-3 p-2 rounded hover:bg-gray-800 transition-colors"
             >
               <img
@@ -146,31 +189,42 @@ export function ShopSidebar() {
                     {product.rating}
                   </span>
                 </div>
-                <p className="text-blue-400 text-sm font-semibold">
+                <p className="text-orange-400 text-sm font-semibold">
                   ${product.price.toFixed(2)}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Product Tags Section */}
-      <div className="rounded-lg p-4">
+      <motion.div
+        variants={sectionVariant}
+        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+      >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Product tags
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <motion.div
+          className="flex flex-wrap gap-2"
+          variants={listVariant}
+          initial="hidden"
+          animate="visible"
+        >
           {productTags.map((tag) => (
-            <button
+            <motion.button
               key={tag}
-              className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded hover:bg-gray-700 hover:text-white transition-colors"
+              variants={itemVariant}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded hover:bg-orange-600 hover:text-white transition-colors"
             >
               {tag}
-            </button>
+            </motion.button>
           ))}
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

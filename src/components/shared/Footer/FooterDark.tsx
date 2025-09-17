@@ -1,7 +1,7 @@
 "use client";
 
-import type React from "react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   FaFacebookF,
   FaInstagram,
@@ -23,25 +23,46 @@ export default function FooterDark() {
     setEmail("");
   };
 
+  const columnVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" as const },
+    }),
+  };
+
   return (
     <footer className="bg-gradient-to-br from-gray-950 via-black to-gray-900 py-16 px-4 border-t border-gray-800">
       <div className="container mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* Company Info */}
-          <div className="lg:col-span-2">
+          <motion.div
+            variants={columnVariants}
+            custom={0}
+            className="lg:col-span-2"
+          >
             <div className="mb-6">
-              <img src={logo.src} alt="Logo" className="h-auto md:h-[100px] w-auto" />
+              <img
+                src={logo.src}
+                alt="Logo"
+                className="h-auto md:h-[100px] w-auto"
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               At TeeCraft Dev we believe every tee tells a story. Whether you're
               designing a custom masterpiece or shopping our curated
               collections, we're here to bring your creative vision to life.
             </p>
-          </div>
+          </motion.div>
 
           {/* Information */}
-          <div>
+          <motion.div variants={columnVariants} custom={1}>
             <h3 className="font-semibold text-white mb-4">Information</h3>
             <ul className="space-y-3">
               {[
@@ -61,10 +82,10 @@ export default function FooterDark() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Useful Links */}
-          <div>
+          <motion.div variants={columnVariants} custom={2}>
             <h3 className="font-semibold text-white mb-4">Useful Links</h3>
             <ul className="space-y-3">
               {[
@@ -84,22 +105,25 @@ export default function FooterDark() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Get In Touch & Newsletter */}
-          <div className="lg:col-span-1">
+          <motion.div
+            variants={columnVariants}
+            custom={3}
+            className="lg:col-span-1"
+          >
             <div className="mb-8">
               <h3 className="font-semibold text-white mb-4">Get In Touch</h3>
-              <div className="space-y-3">
-                <div className="flex items-center text-sm text-gray-400">
+              <div className="space-y-3 text-sm text-gray-400">
+                <div className="flex items-center">
                   <span className="text-green-400 mr-2">📱</span>
                   +88015555555
                 </div>
-                <div className="text-sm text-gray-400">support@example.com</div>
-                <div className="text-sm text-gray-400">
+                <div>support@example.com</div>
+                <div>
                   47 W 13th St, New York,
-                  <br />
-                  NY 10011, USA
+                  <br /> NY 10011, USA
                 </div>
               </div>
             </div>
@@ -110,7 +134,8 @@ export default function FooterDark() {
                 Subscribe our newsletter
               </p>
               <form onSubmit={handleSubmit} className="space-y-3">
-                <input
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -118,52 +143,54 @@ export default function FooterDark() {
                   className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-gray-200 placeholder-gray-500"
                   required
                 />
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-4 rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Subscribe
-                </button>
+                </motion.button>
               </form>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <motion.div
+          className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             © 2025 Tech On 345. All rights reserved.
           </p>
 
-          {/* Social Media Icons */}
           <div className="flex space-x-4">
             {[
-              { icon: <FaFacebookF size={18} />, color: "hover:text-blue-500" },
-              { icon: <FaInstagram size={18} />, color: "hover:text-pink-500" },
-              {
-                icon: <FaLinkedinIn size={18} />,
-                color: "hover:text-blue-400",
-              },
-              { icon: <FaYoutube size={18} />, color: "hover:text-red-500" },
-              {
-                icon: <FaSnapchatGhost size={18} />,
-                color: "hover:text-yellow-400",
-              },
-              { icon: <FaTiktok size={18} />, color: "hover:text-white" },
-              { icon: <FaThreads size={18} />, color: "hover:text-gray-400" },
-              { icon: <FaPinterestP size={18} />, color: "hover:text-red-600" },
-              { icon: <FaXTwitter size={18} />, color: "hover:text-sky-400" },
-            ].map((item, idx) => (
-              <a
+              FaFacebookF,
+              FaInstagram,
+              FaLinkedinIn,
+              FaYoutube,
+              FaSnapchatGhost,
+              FaTiktok,
+              FaThreads,
+              FaPinterestP,
+              FaXTwitter,
+            ].map((Icon, idx) => (
+              <motion.a
                 key={idx}
                 href="#"
-                className={`text-gray-500 ${item.color} transition-colors`}
+                whileHover={{ scale: 1.2 }}
+                className="text-gray-500 hover:text-cyan-400 transition-colors"
               >
-                {item.icon}
-              </a>
+                <Icon size={18} />
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

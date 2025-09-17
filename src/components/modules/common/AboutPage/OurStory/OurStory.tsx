@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Play } from "lucide-react";
-import ourStoryImage from "@/assets/images/ourStoryImage.png";
+import { motion } from "framer-motion";
 import companies from "@/assets/images/companies.png";
+import ourStoryImage from "@/assets/images/ourStoryImage.png";
+import { Play } from "lucide-react";
 
 const OurStory = () => {
   const [activeTab, setActiveTab] = useState("Goals");
@@ -18,40 +19,19 @@ const OurStory = () => {
     "5-Star Rated Service",
   ];
 
-  const brands = [
-    // First row
-    [
-      { name: "Apple", logo: "🍎" },
-      { name: "Meta", logo: "∞" },
-      { name: "TECNO", logo: "TECNO" },
-      { name: "Google", logo: "Google" },
-      { name: "Samsung", logo: "SAMSUNG" },
-      { name: "Lenovo", logo: "lenovo" },
-      { name: "HP", logo: "hp" },
-      { name: "Sony", logo: "SONY" },
-      { name: "JBL", logo: "JBL" },
-    ],
-    // Second row
-    [
-      { name: "Redmi", logo: "REDMI" },
-      { name: "Dell", logo: "DELL" },
-      { name: "Fitbit", logo: "fitbit" },
-      { name: "Garmin", logo: "GARMIN" },
-      { name: "iOS", logo: "iOS" },
-      { name: "Beats by Dre", logo: "Beats by Dre" },
-      { name: "Microsoft", logo: "⊞ Microsoft" },
-      { name: "Android", logo: "android" },
-      { name: "Infinix", logo: "Infinix" },
-    ],
-  ];
-
   return (
     <section className="bg-black text-white py-16 px-4">
       <div className="container mx-auto">
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left Side - Video/Image */}
-          <div className="relative">
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }} // animate when 30% of element is visible
+            transition={{ duration: 1 }}
+          >
             <div className="relative rounded-2xl overflow-hidden">
               <img
                 src={ourStoryImage.src}
@@ -65,10 +45,15 @@ const OurStory = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Content */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
             <h2 className="text-4xl lg:text-5xl font-bold mb-8">Our Story</h2>
 
             {/* Tabs */}
@@ -91,7 +76,14 @@ const OurStory = () => {
             {/* Features List */}
             <div className="space-y-4">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.2 * index }}
+                  className="flex items-center gap-3"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -113,16 +105,21 @@ const OurStory = () => {
                     />
                   </svg>
                   <span className="text-lg text-gray-300">{feature}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Brand Logos */}
-        <div className="pt-8">
+        <motion.div
+          className="pt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
           <img src={companies.src} alt="Brand Logos" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

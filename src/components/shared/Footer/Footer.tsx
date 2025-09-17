@@ -1,8 +1,7 @@
 "use client";
 
-import type React from "react";
-
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   FaFacebookF,
   FaInstagram,
@@ -25,13 +24,30 @@ export default function Footer() {
     setEmail("");
   };
 
+  const columnVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" as const },
+    }),
+  };
+
   return (
     <footer className="bg-white py-16 px-4 border-t border-gray-100">
       <div className="container mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* Company Info */}
-          <div className="lg:col-span-2">
+          <motion.div
+            variants={columnVariants}
+            custom={0}
+            className="lg:col-span-2"
+          >
             <div className="mb-6">
               <img
                 src={logo.src}
@@ -44,116 +60,71 @@ export default function Footer() {
               designing a custom masterpiece or shopping our curated
               collections, we're here to bring your creative vision to life.
             </p>
-          </div>
+          </motion.div>
 
           {/* Information */}
-          <div>
+          <motion.div variants={columnVariants} custom={1}>
             <h3 className="font-semibold text-gray-900 mb-4">Information</h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  About us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Our Blogs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Contact us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  FAQ
-                </Link>
-              </li>
+              {[
+                "About us",
+                "Our Blogs",
+                "Privacy Policy",
+                "Contact us",
+                "FAQ",
+              ].map((item, idx) => (
+                <li key={idx}>
+                  <Link
+                    href="#"
+                    className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Useful Links */}
-          <div>
+          <motion.div variants={columnVariants} custom={2}>
             <h3 className="font-semibold text-gray-900 mb-4">Useful Links</h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Browse Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Your Cart
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Support
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/testimonials"
-                  className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
-                >
-                  Testimonials
-                </Link>
-              </li>
+              {[
+                "My Account",
+                "Browse Shop",
+                "Your Cart",
+                "Support",
+                "Testimonials",
+              ].map((item, idx) => (
+                <li key={idx}>
+                  <Link
+                    href="#"
+                    className="text-gray-600 hover:text-blue-500 text-sm transition-colors"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Get In Touch & Newsletter */}
-          <div className="lg:col-span-1">
+          <motion.div
+            variants={columnVariants}
+            custom={3}
+            className="lg:col-span-1"
+          >
             <div className="mb-8">
               <h3 className="font-semibold text-gray-900 mb-4">Get In Touch</h3>
-              <div className="space-y-3">
-                <div className="flex items-center text-sm text-gray-600">
+              <div className="space-y-3 text-sm text-gray-600">
+                <div className="flex items-center">
                   <span className="text-green-500 mr-2">📱</span>
                   +88015555555
                 </div>
-                <div className="text-sm text-gray-600">support@example.com</div>
-                <div className="text-sm text-gray-600">
+                <div>support@example.com</div>
+                <div>
                   47 W 13th St, New York,
-                  <br />
-                  NY 10011, USA
+                  <br /> NY 10011, USA
                 </div>
               </div>
             </div>
@@ -164,7 +135,8 @@ export default function Footer() {
                 Subscribe our newsletter
               </p>
               <form onSubmit={handleSubmit} className="space-y-3">
-                <input
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -172,81 +144,54 @@ export default function Footer() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                   required
                 />
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-4 rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Subscribe
-                </button>
+                </motion.button>
               </form>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <motion.div
+          className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <p className="text-gray-600 text-sm mb-4 md:mb-0">
             © 2025 Tech On 345. All rights reserved.
           </p>
 
-          {/* Social Media Icons */}
           <div className="flex space-x-4">
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-blue-600 transition-colors"
-            >
-              <FaFacebookF size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-pink-600 transition-colors"
-            >
-              <FaInstagram size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-blue-700 transition-colors"
-            >
-              <FaLinkedinIn size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-red-600 transition-colors"
-            >
-              <FaYoutube size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-yellow-400 transition-colors"
-            >
-              <FaSnapchatGhost size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-black transition-colors"
-            >
-              <FaTiktok size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-gray-800 transition-colors"
-            >
-              <FaThreads size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-red-600 transition-colors"
-            >
-              <FaPinterestP size={18} />
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-black transition-colors"
-            >
-              <FaXTwitter size={18} />
-            </Link>
+            {[
+              FaFacebookF,
+              FaInstagram,
+              FaLinkedinIn,
+              FaYoutube,
+              FaSnapchatGhost,
+              FaTiktok,
+              FaThreads,
+              FaPinterestP,
+              FaXTwitter,
+            ].map((Icon, idx) => (
+              <motion.a
+                key={idx}
+                href="#"
+                whileHover={{ scale: 1.2 }}
+                className="text-gray-400 hover:text-blue-600 transition-colors"
+              >
+                <Icon size={18} />
+              </motion.a>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
