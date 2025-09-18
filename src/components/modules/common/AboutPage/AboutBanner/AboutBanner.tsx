@@ -6,14 +6,35 @@ import aboutRightSideImage from "@/assets/images/aboutRightSideImage.png";
 import MyButton from "@/components/ui/core/MyButton/MyButton";
 import Image from "next/image";
 import Link from "next/link";
+import LiquidEther from "@/components/LiquidEther";
 
 export default function AboutBanner() {
   return (
     <section
-      style={{ backgroundImage: `url(${aboutBannerBg.src})` }}
-      className="relative bg-cover bg-no-repeat min-h-screen overflow-hidden"
+      // style={{ backgroundImage: `url(${aboutBannerBg.src})` }}
+      className="relative bg-cover bg-black bg-no-repeat min-h-screen overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* <div className="absolute inset-0 bg-black/60"></div> */}
+
+      <div className="absolute inset-0 w-full h-full">
+        <LiquidEther
+          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
 
       <div className="relative z-20 container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">

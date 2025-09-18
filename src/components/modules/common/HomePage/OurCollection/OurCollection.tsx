@@ -123,7 +123,7 @@ export default function OurCollection() {
                     variants={fadeUpItem}
                     className="px-2"
                   >
-                    <button
+                    {/* <button
                       onClick={() => setSelectedCategory(category)}
                       className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
                         selectedCategory === category
@@ -132,7 +132,61 @@ export default function OurCollection() {
                       }`}
                     >
                       {category}
-                    </button>
+                    </button> */}
+                    <>
+                      <div
+                        className={`rounded-lg p-[2px] gradient-border ${
+                          selectedCategory === category ? "shadow-lg" : ""
+                        }`}
+                        aria-hidden="true"
+                      >
+                        <button
+                          onClick={() => setSelectedCategory(category)}
+                          className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
+                            selectedCategory === category
+                              ? "bg-orange-500 text-white"
+                              : "bg-[#191919] text-white hover:bg-gray-700"
+                          }
+                        `}
+                        >
+                          {category}
+                        </button>
+                      </div>
+
+                      {/* Put this CSS into your global stylesheet (e.g. styles/globals.css) or inside a <style jsx global> */}
+                      <style jsx global>{`
+                        /* Animated gradient border wrapper */
+                        .gradient-border {
+                          /* your gradient (exact) */
+                          background: linear-gradient(
+                            90deg,
+                            #032159 0%,
+                            #1ea4ea 50%,
+                            #66efff 100%
+                          );
+                          /* make the gradient move */
+                          background-size: 200% 100%;
+                          animation: moveGradient 3s linear infinite;
+                        }
+
+                        @keyframes moveGradient {
+                          0% {
+                            background-position: 0% 50%;
+                          }
+                          50% {
+                            background-position: 100% 50%;
+                          }
+                          100% {
+                            background-position: 0% 50%;
+                          }
+                        }
+
+                        /* Optional: remove focus outline on wrapper but keep accessible focus on the button */
+                        .gradient-border:focus {
+                          outline: none;
+                        }
+                      `}</style>
+                    </>
                   </motion.div>
                 ))}
               </Carousel>

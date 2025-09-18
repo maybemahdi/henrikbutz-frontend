@@ -110,6 +110,25 @@ const BlogPage = () => {
   const nextSlide = () => carouselRef.current?.next();
   const prevSlide = () => carouselRef.current?.prev();
 
+  // Variants for stagger animations
+  const staggerContainer = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const fadeUpItem = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-black">
       <motion.div
@@ -144,8 +163,9 @@ const BlogPage = () => {
 
         {/* Categories Slider */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           className="relative my-12"
         >
@@ -163,7 +183,6 @@ const BlogPage = () => {
                 dots={false}
                 infinite={true}
                 slidesToShow={5}
-                draggable
                 slidesToScroll={1}
                 responsive={[
                   { breakpoint: 1024, settings: { slidesToShow: 4 } },
@@ -171,9 +190,13 @@ const BlogPage = () => {
                   { breakpoint: 480, settings: { slidesToShow: 1 } },
                 ]}
               >
-                {categories?.map((category) => (
-                  <div key={category} className="px-2">
-                    <button
+                {categories.map((category) => (
+                  <motion.div
+                    key={category}
+                    variants={fadeUpItem}
+                    className="px-2"
+                  >
+                    {/* <button
                       onClick={() => setSelectedCategory(category)}
                       className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
                         selectedCategory === category
@@ -182,8 +205,62 @@ const BlogPage = () => {
                       }`}
                     >
                       {category}
-                    </button>
-                  </div>
+                    </button> */}
+                    <>
+                      <div
+                        className={`rounded-lg p-[2px] gradient-border ${
+                          selectedCategory === category ? "shadow-lg" : ""
+                        }`}
+                        aria-hidden="true"
+                      >
+                        <button
+                          onClick={() => setSelectedCategory(category)}
+                          className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
+                            selectedCategory === category
+                              ? "bg-orange-500 text-white"
+                              : "bg-[#191919] text-white hover:bg-gray-700"
+                          }
+                        `}
+                        >
+                          {category}
+                        </button>
+                      </div>
+
+                      {/* Put this CSS into your global stylesheet (e.g. styles/globals.css) or inside a <style jsx global> */}
+                      <style jsx global>{`
+                        /* Animated gradient border wrapper */
+                        .gradient-border {
+                          /* your gradient (exact) */
+                          background: linear-gradient(
+                            90deg,
+                            #032159 0%,
+                            #1ea4ea 50%,
+                            #66efff 100%
+                          );
+                          /* make the gradient move */
+                          background-size: 200% 100%;
+                          animation: moveGradient 3s linear infinite;
+                        }
+
+                        @keyframes moveGradient {
+                          0% {
+                            background-position: 0% 50%;
+                          }
+                          50% {
+                            background-position: 100% 50%;
+                          }
+                          100% {
+                            background-position: 0% 50%;
+                          }
+                        }
+
+                        /* Optional: remove focus outline on wrapper but keep accessible focus on the button */
+                        .gradient-border:focus {
+                          outline: none;
+                        }
+                      `}</style>
+                    </>
+                  </motion.div>
                 ))}
               </Carousel>
             </div>

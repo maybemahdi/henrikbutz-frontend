@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     title: "Verified Buyer",
     rating: 4,
     text: "Absolutely love my custom tool! The design tool was so easy to use, and the print quality is even better than I expected and matches well—will definitely order again!",
-    avatar: "/placeholder.svg?height=50&width=50",
+    avatar: "https://randomuser.me/api/portraits/women/63.jpg",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     title: "Verified Buyer",
     rating: 3,
     text: "Absolutely love my custom tool! The design tool was so easy to use, and the print quality is even better than I expected and matches well—will definitely order again!",
-    avatar: "/placeholder.svg?height=50&width=50",
+    avatar: "https://randomuser.me/api/portraits/women/63.jpg",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const testimonials: Testimonial[] = [
     title: "Verified Buyer",
     rating: 3,
     text: "Absolutely love my custom tool! The design tool was so easy to use, and the print quality is even better than I expected and matches well—will definitely order again!",
-    avatar: "/placeholder.svg?height=50&width=50",
+    avatar: "https://randomuser.me/api/portraits/women/63.jpg",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const testimonials: Testimonial[] = [
     title: "Verified Buyer",
     rating: 5,
     text: "Outstanding service and product quality! The customization options are incredible and the final product exceeded my expectations. Highly recommended!",
-    avatar: "/placeholder.svg?height=50&width=50",
+    avatar: "https://randomuser.me/api/portraits/women/63.jpg",
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const testimonials: Testimonial[] = [
     title: "Verified Buyer",
     rating: 4,
     text: "Great experience from start to finish. The design process was intuitive and the customer support was excellent. Will definitely be ordering again!",
-    avatar: "/placeholder.svg?height=50&width=50",
+    avatar: "https://randomuser.me/api/portraits/women/63.jpg",
   },
 ];
 

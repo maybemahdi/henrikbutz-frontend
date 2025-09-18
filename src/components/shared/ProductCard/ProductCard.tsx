@@ -121,17 +121,19 @@ export default function ProductCard({
           </h3>
         </Link>
         <p
-          className={`"text-2xl font-bold ${
+          className={`"text-2xl font-bold !mb-2 ${
             bg === "bg-white" ? "text-gray-900" : "text-white"
           } mb-4"`}
         >
           ${product.price}
         </p>
+        <Link href={`/checkout`}>
         <MyButton
           onClick={btnAction === "Add to Cart" ? handleAddToCart : () => {}}
           label={btnAction}
           fullWidth
         />
+        </Link>
       </div>
     </div>
   );
