@@ -7,6 +7,7 @@ import MyButton from "@/components/ui/core/MyButton/MyButton";
 import Image from "next/image";
 import Link from "next/link";
 import LiquidEther from "@/components/LiquidEther";
+import MyGradientButton from "@/components/ui/core/MyButton/MyGradientButton";
 
 export default function AboutBanner() {
   return (
@@ -187,7 +188,7 @@ export default function AboutBanner() {
             {/* CTA Button */}
             <div className="pt-6">
               <Link href="/shop">
-                <MyButton label="Shop Now" variant="outline" />
+                <MyGradientButton className="!py-6 !px-16 !w-fit" label="Shop Now" variant="primary" />
               </Link>
             </div>
           </motion.div>

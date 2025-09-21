@@ -148,7 +148,7 @@ export default function Footer() {
                   type="submit"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300"
+                  className="w-full bg-core-gradient text-white py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Subscribe
                 </motion.button>

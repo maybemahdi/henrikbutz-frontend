@@ -144,7 +144,7 @@ export default function OurCollection() {
                           onClick={() => setSelectedCategory(category)}
                           className={`w-full px-4 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 ${
                             selectedCategory === category
-                              ? "bg-orange-500 text-white"
+                              ? "bg-core-gradient text-white"
                               : "bg-[#191919] text-white hover:bg-gray-700"
                           }
                         `}

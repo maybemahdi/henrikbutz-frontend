@@ -52,7 +52,7 @@ export default function FAQDark() {
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-gray-200">
-      <div className="container py-12 mx-auto border-2 border-indigo-500 rounded-lg">
+      <div className="container py-12 mx-auto border-2 border-orange-500/70 rounded-lg">
         {/* Section Header */}
         <motion.div
           className="text-center mb-12"
@@ -71,7 +71,7 @@ export default function FAQDark() {
 
         {/* FAQ Items */}
         <motion.div
-          className="max-w-[80%] mx-auto bg-gray-800/70 rounded-2xl border border-gray-700 overflow-hidden shadow-lg"
+          className="max-w-[80%] mx-auto border-orange-500/60 rounded-2xl border border-gray-700 overflow-hidden shadow-lg"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
@@ -93,7 +93,9 @@ export default function FAQDark() {
                   transition: { duration: 0.4, ease: "easeOut" as const },
                 },
               }}
-              className={`${index !== 0 ? "border-t border-gray-700" : ""}`}
+              className={`${
+                index !== 0 ? "border-t border-orange-500/60" : ""
+              }`}
             >
               <button
                 onClick={() => toggleItem(item.id)}

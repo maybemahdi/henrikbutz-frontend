@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import MyGradientButton from "@/components/ui/core/MyButton/MyGradientButton";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const categories = [
   { name: "Smart Mobiles", active: true },
@@ -27,35 +29,35 @@ const bestSellerProducts = [
     name: "Essential Comfort T-Shirt",
     price: 50.0,
     rating: 4.7,
-    image: "/placeholder.svg?height=60&width=60",
+    image: "https://i.ibb.co.com/V0zwxxvy/elegant-smartphone-composition.jpg",
   },
   {
     id: 2,
     name: "Wireless Bass Headphones",
     price: 120.0,
     rating: 4.9,
-    image: "/placeholder.svg?height=60&width=60",
+    image: "https://i.ibb.co.com/V0zwxxvy/elegant-smartphone-composition.jpg",
   },
   {
     id: 3,
     name: "4K Smart TV Stick",
     price: 80.0,
     rating: 4.5,
-    image: "/placeholder.svg?height=60&width=60",
+    image: "https://i.ibb.co.com/V0zwxxvy/elegant-smartphone-composition.jpg",
   },
   {
     id: 4,
     name: "Pro Gaming Mouse",
     price: 45.0,
     rating: 4.6,
-    image: "/placeholder.svg?height=60&width=60",
+    image: "https://i.ibb.co.com/V0zwxxvy/elegant-smartphone-composition.jpg",
   },
   {
     id: 5,
     name: "Fitness Smart Watch",
     price: 150.0,
     rating: 4.8,
-    image: "/placeholder.svg?height=60&width=60",
+    image: "https://i.ibb.co.com/V0zwxxvy/elegant-smartphone-composition.jpg",
   },
 ];
 
@@ -104,7 +106,7 @@ export function ShopSidebar() {
       {/* Category Section */}
       <motion.div
         variants={sectionVariant}
-        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+        className="rounded-lg p-4 bg-transparent"
       >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Category
@@ -132,7 +134,7 @@ export function ShopSidebar() {
       {/* Price Filter Section */}
       <motion.div
         variants={sectionVariant}
-        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+        className="rounded-lg p-4 bg-transparent"
       >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Filter by price
@@ -161,7 +163,7 @@ export function ShopSidebar() {
       {/* Best Seller Section */}
       <motion.div
         variants={sectionVariant}
-        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+        className="rounded-lg p-4 bg-transparent"
       >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Best Seller
@@ -201,7 +203,7 @@ export function ShopSidebar() {
       {/* Product Tags Section */}
       <motion.div
         variants={sectionVariant}
-        className="rounded-lg p-4 bg-gray-900/40 border border-gray-700"
+        className="rounded-lg p-4 bg-transparent"
       >
         <h3 className="text-white font-semibold mb-4 border-l-2 bg-gray-500/30 border-orange-600 px-3 py-2 rounded">
           Product tags
@@ -213,15 +215,12 @@ export function ShopSidebar() {
           animate="visible"
         >
           {productTags.map((tag) => (
-            <motion.button
-              key={tag}
-              variants={itemVariant}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
-              className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded hover:bg-orange-600 hover:text-white transition-colors"
-            >
-              {tag}
-            </motion.button>
+            <MyGradientButton
+              variant="secondary"
+              label={tag?.charAt(0).toUpperCase() + tag?.slice(1)}
+              onClick={() => toast.success("Button clicked!")}
+              className="text-sm px-16 !py-4"
+            />
           ))}
         </motion.div>
       </motion.div>

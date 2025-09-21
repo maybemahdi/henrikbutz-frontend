@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import companies from "@/assets/images/companies.png";
 import ourStoryImage from "@/assets/images/ourStoryImage.png";
 import { Play } from "lucide-react";
+import MyGradientButton from "@/components/ui/core/MyButton/MyGradientButton";
 
 const OurStory = () => {
   const [activeTab, setActiveTab] = useState("Goals");
@@ -59,17 +60,17 @@ const OurStory = () => {
             {/* Tabs */}
             <div className="flex gap-4 mb-8">
               {tabs.map((tab) => (
-                <button
+                <MyGradientButton
+                  variant="secondary"
                   key={tab}
+                  label={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-3 w-full rounded-lg font-medium transition-all duration-300 ${
+                  className={`!px-6 !py-5 !w-full rounded-lg font-medium transition-all duration-300 ${
                     activeTab === tab
-                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white"
-                      : "bg-transparent border border-orange-500 text-gray-300 hover:border-orange-500"
+                      ? "!bg-yellow-500"
+                      : ""
                   }`}
-                >
-                  {tab}
-                </button>
+                />
               ))}
             </div>
 

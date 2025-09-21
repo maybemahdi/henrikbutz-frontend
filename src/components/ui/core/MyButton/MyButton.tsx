@@ -83,7 +83,7 @@ const MyButton: React.FC<ButtonProps> = ({
       "px-[calc(24px-2px)]"
     ),
     filled: cn(
-      "bg-gradient-to-r from-blue-500 to-purple-600 !text-white",
+      "bg-core-gradient !text-white",
       "hover:from-blue-600 hover:to-purple-700",
       "active:from-blue-700 active:to-purple-800",
       "shadow-lg shadow-blue-500/30"
